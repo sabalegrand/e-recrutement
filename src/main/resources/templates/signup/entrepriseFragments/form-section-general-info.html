@@ -1,10 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <title>form section general info</title>
 </head>
 <body>
+
+<th:block th:fragment="form-section-general-info">
+    <h3>Informations générales</h3>
+    <section>
+        <div class="form-group clearfix">
+            <label class="col-lg-3">Email
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-lg-9">
+                <input class="form-control" type="email" placeholder="Entrez votre email" th:field="*{username}"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+            </div>
+        </div>
+
+        <div class="form-group clearfix">
+            <label class="col-lg-3">Nom
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-lg-9">
+                <input class="form-control" placeholder="Entrez votre nom" type="text" th:field="*{lastName}"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+            </div>
+        </div>
+
+        <div class="form-group clearfix">
+            <label class="col-lg-3">Prénom:
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-lg-9">
+                <input class="form-control" type="text" placeholder="Entrez votre prénom" th:field="*{firstName}"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+            </div>
+        </div>
+
+        <div class="form-group clearfix">
+            <label class="col-lg-3">Téléphone personnel:
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-lg-9">
+                <input class="form-control" type="text" placeholder="n° tel personnel"
+                       th:field="*{personalPhoneNumber}"/>
+                    <span class="text-danger" th:if="${#fields.hasErrors('personalPhoneNumber')}"
+                          th:errors="*{personalPhoneNumber}"></span>
+            </div>
+        </div>
+
+        <div class="form-group clearfix">
+            <label class="col-lg-3">Pays:
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-lg-9">
+                <select class="country-select from-control"
+                        th:field="*{country}"></select>
+
+                    <span class="text-danger" th:if="${#fields.hasErrors('country')}"
+                          th:errors="*{country}"></span>
+            </div>
+        </div>
+
+        <div class="form-group clearfix">
+            <label class="col-lg-3">Mot de passe:
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-lg-9">
+                <input class="form-control" type="password" placeholder="Mot de passe" th:field="*{password}"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+            </div>
+        </div>
+
+        <div class="form-group clearfix">
+            <label class="col-lg-3">Confirmation:
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-lg-9">
+                <input class="form-control" type="password" placeholder="Mot de passe" name="passwordConfirm"/>
+                <!--<span th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="${passwordConfirm}"></span>-->
+            </div>
+        </div>
+
+    </section>
+</th:block>
 
 </body>
 </html>

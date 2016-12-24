@@ -6,6 +6,7 @@ import com.erecrutement.Repositories.CvRepository;
 import com.erecrutement.Services.CandidatService;
 import com.erecrutement.Services.ExperienceService;
 import com.erecrutement.Services.FormationService;
+import com.erecrutement.Services.UserService;
 import com.erecrutement.ViewModels.ExperienceForm;
 import com.erecrutement.ViewModels.XeditableForm;
 import org.springframework.beans.PropertyAccessorUtils;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -67,10 +69,18 @@ public class CandidatController {
     public String profile(Principal principal, Model model) {
 
         Candidat candidat = candidatService.findByUsername(principal.getName());
-
         Collection<Cv> cvs = candidat.getCvs();
+        LocalCv localCv = null;
+
+        for(Cv cv: cvs) {
+            if(cv instanceof LocalCv) {
+                localCv = (LocalCv)cv;
+            }
+        }
+
 
         model.addAttribute("candidat", candidat);
+        model.addAttribute("localCv", localCv);
 //        model.addAttribute("experiences", experiences);
 //        model.addAttribute("formations", formations);
 
@@ -78,7 +88,24 @@ public class CandidatController {
     }
 
     @PostMapping("/experience/add")
-    public String addExperience(@ModelAttribute ExperienceForm experienceForm) throws ParseException {
+    public String addExperience(@ModelAttribute ExperienceForm experienceForm, Principal principal) throws ParseException {
+
+        Candidat candidat = candidatService.findByUsername(principal.getName());
+        Collection<Cv> cvs = candidat.getCvs();
+        LocalCv localCv = null;
+
+            // on récup cv local parmis la liste des cvs
+        for(Cv cv: cvs) {
+            if(cv instanceof LocalCv) {
+                localCv = (LocalCv)cv;
+            }
+        }
+            // si pas de cv local dans la liste de cvs
+        if(localCv == null) {
+            localCv = new LocalCv();
+            candidat.getCvs().add(localCv);
+        }
+
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date debut = formatter.parse(experienceForm.getDebut()),
              fin  = formatter.parse(experienceForm.getFin());
@@ -90,13 +117,32 @@ public class CandidatController {
         experience.setFin(fin);
         experience.setDescription(experienceForm.getDescription().replaceAll("\\r?\\n", "<br />"));
 
-        experienceService.save(experience);
+        localCv.getExperiences().add(experience);
+
+        candidatService.update(candidat);
 
         return "redirect:/candidat/profile";
     }
 
     @PostMapping("/formation/add")
-    public String addFormation(@ModelAttribute ExperienceForm formationForm) throws ParseException {
+    public String addFormation(@ModelAttribute ExperienceForm formationForm, Principal principal) throws ParseException {
+
+        Candidat candidat = candidatService.findByUsername(principal.getName());
+        Collection<Cv> cvs = candidat.getCvs();
+        LocalCv localCv = null;
+
+        // on récup cv local parmis la liste des cvs
+        for(Cv cv: cvs) {
+            if(cv instanceof LocalCv) {
+                localCv = (LocalCv)cv;
+            }
+        }
+        // si pas de cv local dans la liste de cvs
+        if(localCv == null) {
+            localCv = new LocalCv();
+            candidat.getCvs().add(localCv);
+        }
+            // creation + remplissage objet formation
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date debut = formatter.parse(formationForm.getDebut()),
                 fin  = formatter.parse(formationForm.getFin());
@@ -108,9 +154,28 @@ public class CandidatController {
         formation.setFin(fin);
         formation.setDescription(formationForm.getDescription().replaceAll("\\r?\\n", "<br />"));
 
-        formationService.save(formation);
+        localCv.getFormations().add(formation);
+
+        candidatService.update(candidat);
 
         return "redirect:/candidat/profile";
+    }
+
+        // X-EDITABLE MODIFICATIONS
+    @PostMapping("/profile/edit/username")
+    public ResponseEntity<String> editUsername(@ModelAttribute XeditableForm form) {
+
+
+        Candidat candidat = candidatService.findByUsername(form.getPk());
+
+        System.out.println(form.getPk());
+        if(candidatService.findByUsername(form.getValue()) != null) {
+            return ResponseEntity.badRequest().body("Cette adresse email est déjà utilisée");
+        }
+        candidat.setUsername(form.getValue());
+        candidatService.save(candidat);
+
+        return ResponseEntity.ok("ok");
     }
     @PostMapping("/profile/edit/personalPhoneNumber")
     public ResponseEntity<String> editPersonalPhoneNumber(@ModelAttribute XeditableForm form) {

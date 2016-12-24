@@ -31,11 +31,9 @@ public class Candidat extends User {
     @OneToMany(cascade = CascadeType.ALL)
     private Collection<Cv> cvs;
 
-
     public Candidat() {
         this.cvs = new ArrayList<>();
     }
-
 
     public Collection<Cv> getCvs() {
         return cvs;

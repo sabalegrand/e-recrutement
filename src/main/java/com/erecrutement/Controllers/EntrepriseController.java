@@ -14,4 +14,5 @@ public class EntrepriseController {
         System.out.println("bonjour");
         return "entreprise/index";
     }
+
 }

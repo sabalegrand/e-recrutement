@@ -41,10 +41,17 @@ public class TestController {
 
     @RequestMapping("/")
     @ResponseBody
-    public String index() {
+    public Object index() {
 
         Candidat candidat = candidatService.findByUsername("tsertsvadzesaba@gmail.com");
         Collection<Cv> cvs = candidat.getCvs();
+
+        for(Cv cv: cvs) {
+            if(cv instanceof CvPortfolio) {
+                return cv;
+            }
+        }
+
         return "ok";
     }
     @RequestMapping("/add-cv")
@@ -52,9 +59,9 @@ public class TestController {
     public String addCv() {
 
         Candidat candidat = candidatService.findByUsername("tsertsvadzesaba@gmail.com");
-        CvPDF cvPDF = new CvPDF();
-        cvPDF.setName("saba");
-        candidat.getCvs().add(cvPDF);
+        CvPortfolio cvPortfolio = new CvPortfolio();
+        cvPortfolio.setUrl("saba");
+        candidat.getCvs().add(cvPortfolio);
         candidatService.save(candidat);
         return "ok";
     }

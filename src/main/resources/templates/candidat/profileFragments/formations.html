@@ -18,7 +18,7 @@
     <!-- FIN FORMULAIRE AJOUT FORMATIONS -->
 
     <!-- LISTE LES FORMATIONS -->
-    <th:block th:each="formation : ${formations}">
+    <th:block th:each="formation : ${localCv.formations}">
         <div th:replace="candidat/profileFragments/experiencesFragments/experience ::
                                          experience(${formation.id},${formation.formation}, ${formation.lieu},
                                          ${formation.debut}, ${formation.fin},

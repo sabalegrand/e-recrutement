@@ -24,7 +24,7 @@
 
             <div class="menu-extras">
 
-                <ul class="navbar-nav navbar-right pull-right ">
+                <ul class="nav navbar-nav navbar-right pull-right ">
                     <th:block sec:authorize="isAnonymous()">
                         <li class="navbar-c-items">
                             <a th:href="@{/login}">Login</a>
@@ -40,30 +40,17 @@
 
                 <ul class="nav navbar-nav navbar-right pull-right">
                     <th:block sec:authorize="isAuthenticated()">
-                        <li class="dropdown navbar-c-items">
-                            <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown"
-                               aria-expanded="true"><img th:src="@{/images/users/default_profile.jpg}" alt="user-img"
-                                                         class="img-circle"/> </a>
-                            <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
-                                <li class="text-center">
-                                    <!--<h5><span sec:authentication="principal.firstName"></span></h5>-->
-                                </li>
-                                <li><a href="javascript:void(0)"><i class="ti-user m-r-5"></i> Profile</a></li>
-                                <li><a href="javascript:void(0)"><i class="ti-settings m-r-5"></i> Settings</a></li>
-                                <li><a href="javascript:void(0)"><i class="ti-lock m-r-5"></i> Lock screen</a></li>
-                                <li>
-                                    <form id="logoutForm" th:action="@{/logout}" method="post">
-                                    </form>
-                                    <a href="#" onclick="$('#logoutForm').submit()">
-                                        <i class="ti-power-off m-r-5"></i> Logout
-                                    </a>
-                                </li>
-                            </ul>
-
+                        <li sec:authorize-url="/candidat/profile">
+                            <a th:href="@{/candidat/profile}">Profile</a>
+                        </li>
+                        <li sec:authorize-url="/entreprise/profile">
+                            <a th:href="@{/entreprise/profile}">Profile</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/logout}">Logout</a>
                         </li>
                     </th:block>
                 </ul>
-
 
                 <div class="menu-item">
                     <!-- Mobile menu toggle-->

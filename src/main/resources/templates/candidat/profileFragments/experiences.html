@@ -17,7 +17,7 @@
     <!-- FIN FORMULAIRE AJOUT EXPERIENCE -->
 
     <!-- LISTE LES EXPERIENCES -->
-    <th:block th:each="experience : ${experiences}">
+    <th:block th:each="experience : ${localCv.experiences}">
         <div th:replace="candidat/profileFragments/experiencesFragments/experience ::
                                          experience(${experience.id},${experience.titre}, ${experience.lieu},
                                          ${experience.debut}, ${experience.fin},

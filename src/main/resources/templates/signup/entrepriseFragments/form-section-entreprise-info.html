@@ -1,10 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Title</title>
 </head>
 <body>
+
+<th:block th:fragment="form-section-entreprise-info">
+    <h3>Profile</h3>
+    <section>
+        <div class="form-group clearfix">
+            <label class="col-lg-3">Nom de l'entreprise
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-lg-9">
+                <input class="form-control" type="text" placeholder="Nom de l'entreprise" th:field="*{companyName}"/>
+                <span class="text-danger" th:if="${#fields.hasErrors('companyName')}" th:errors="*{companyName}"></span>
+            </div>
+        </div>
+
+        <div class="form-group clearfix">
+            <label class="col-lg-3">Numéro RC
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-lg-9">
+                <input class="form-control" placeholder="Numéro RC" type="text" th:field="*{rcNumber}"/>
+            </div>
+        </div>
+
+        <div class="form-group clearfix">
+            <label class="col-lg-3">Site Web:
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-lg-9">
+                <input class="form-control" type="text" placeholder="Site Web" th:field="*{webSite}"/>
+            </div>
+        </div>
+
+        <div class="form-group clearfix">
+            <label class="col-lg-3">Description:
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-lg-9">
+                <input class="form-control" type="text" placeholder="Description"
+                       th:field="*{description}"/>
+            </div>
+        </div>
+
+        <div class="form-group clearfix">
+            <label class="col-lg-3">Secteur d'acitivité:</label>
+            <div class="col-lg-9">
+                <select class="country-select from-control"
+                        th:field="*{activitySector}"></select>
+            </div>
+        </div>
+
+        <div class="form-group clearfix">
+            <label class="col-lg-3">Logo:</label>
+            <div class="col-lg-9">
+                <input class="form-control" type="file"/>
+            </div>
+        </div>
+
+        <div class="form-group clearfix">
+            <label class="col-lg-3">Numéro de téléphone professionel:
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-lg-9">
+                <input class="form-control" type="text" placeholder="N°tel professionel" name="professionalPhoneNumber"/>
+            </div>
+        </div>
+
+    </section>
+
+</th:block>
 
 </body>
 </html>
