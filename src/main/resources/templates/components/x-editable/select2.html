@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>x-editable-select2</title>
+</head>
+<body>
+
+<th:block th:fragment="select2(id,classNames,title,url,pk,text)">
+    <a href="#" th:id="${id}"
+       data-type="select2"
+       th:class="${classNames}"
+       data-placement="right"
+       th:attr="data-url=${url},
+                data-pk=${pk},
+                data-title=${title},
+                data-value=${text}">
+    </a>
+</th:block>
+
+
+</body>
+</html>

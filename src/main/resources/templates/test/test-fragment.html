@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+
+<div th:fragment="experience (id,titre, lieu, debut, fin, description)">
+    <span th:text="${titre}"></span>
+    <span th:text="${lieu}"></span>
+    <span th:text="${debut}"></span>
+    <span th:text="${fin}"></span>
+    <span th:text="${description}"></span>
+</div>
+
+</body>
+</html>

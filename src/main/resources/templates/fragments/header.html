@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<body>
+
+<div th:fragment="header">
+    <div class="topbar-main">
+        <div class="container">
+
+            <!-- Logo container-->
+            <div class="logo">
+                <!-- Text Logo -->
+                <!--<a href="index.html" class="logo">-->
+                <!--Zircos-->
+                <!--</a>-->
+                <!-- Image Logo -->
+                <a href="#" class="logo">
+                    <img th:src="@{/images/logo.png}" alt="" height="30"/>
+                </a>
+
+            </div>
+            <!-- End Logo container-->
+
+            <div class="menu-extras">
+
+                <ul class="navbar-nav navbar-right pull-right ">
+                    <th:block sec:authorize="isAnonymous()">
+                        <li class="navbar-c-items">
+                            <a th:href="@{/login}">Login</a>
+                        </li>
+                        <li class="navbar-c-items">
+                            <a th:href="@{/signup/candidat}">Inscription Candidat</a>
+                        </li>
+                        <li class="navbar-c-items">
+                            <a th:href="@{/signup/entreprise}">Inscription Entreprise</a>
+                        </li>
+                    </th:block>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right pull-right">
+                    <th:block sec:authorize="isAuthenticated()">
+                        <li class="dropdown navbar-c-items">
+                            <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown"
+                               aria-expanded="true"><img th:src="@{/images/users/default_profile.jpg}" alt="user-img"
+                                                         class="img-circle"/> </a>
+                            <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
+                                <li class="text-center">
+                                    <!--<h5><span sec:authentication="principal.firstName"></span></h5>-->
+                                </li>
+                                <li><a href="javascript:void(0)"><i class="ti-user m-r-5"></i> Profile</a></li>
+                                <li><a href="javascript:void(0)"><i class="ti-settings m-r-5"></i> Settings</a></li>
+                                <li><a href="javascript:void(0)"><i class="ti-lock m-r-5"></i> Lock screen</a></li>
+                                <li>
+                                    <form id="logoutForm" th:action="@{/logout}" method="post">
+                                    </form>
+                                    <a href="#" onclick="$('#logoutForm').submit()">
+                                        <i class="ti-power-off m-r-5"></i> Logout
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </li>
+                    </th:block>
+                </ul>
+
+
+                <div class="menu-item">
+                    <!-- Mobile menu toggle-->
+                    <a class="navbar-toggle">
+                        <div class="lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </a>
+                    <!-- End mobile menu toggle-->
+                </div>
+            </div>
+            <!-- end menu-extras -->
+        </div> <!-- end container -->
+    </div>
+    <!-- end topbar-main -->
+    <div class="navbar-custom">
+        <div class="container">
+            <div id="navigation">
+                <!-- Navigation Menu-->
+                <ul class="navigation-menu">
+
+                    <li class="has-submenu">
+                        <a href="#"><i class="mdi mdi-view-dashboard"></i>Dashboard</a>
+                        <ul class="submenu">
+                            <li>
+                                <a href="index.html">Dashboard 01</a>
+                            </li>
+                            <li>
+                                <a href="dashboard_2.html">Dashboard 02</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="#"><i class="mdi mdi-view-dashboard"></i>Dashboard</a>
+                        <ul class="submenu">
+                            <li>
+                                <a href="index.html">Dashboard 01</a>
+                            </li>
+                            <li>
+                                <a href="dashboard_2.html">Dashboard 02</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- End navigation menu -->
+            </div> <!-- end #navigation -->
+        </div> <!-- end container -->
+    </div> <!-- end navbar-custom -->
+</div>
+
+</body>
+</html>

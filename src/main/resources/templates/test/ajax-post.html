@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>ajax post</title>
+    <script th:src="@{/js/jquery.min.js}"></script>
+
+</head>
+<body>
+
+
+<div id="content">
+
+    <th:block th:each="experience : ${experiences}">
+        <div th:replace="test/test-fragment ::
+         experience(${experience.id},${experience.titre}, ${experience.lieu},
+         ${experience.debut}, ${experience.fin},
+         ${experience.description})"></div>
+    </th:block>
+
+</div>
+
+<form action="#" th:action="@{/test/ajax-post}" method="post" id="formExperience">
+    <input type="text" id="titre" name="titre"/> <br/>
+    <input type="text" id="lieu" name="lieu"/> <br/>
+    <input type="date" id="debut" name="debut"/> -
+    <input type="date" id="fin" name="fin"/><br/>
+    <textarea id="description" name="description"></textarea><br/>
+    <button type="submit" id="submitFormExperience">Submit</button>
+</form>
+
+<script>
+
+    //    $("#submitFormExperience").click(function () {
+    //        $.post(
+    //                '/test/ajax-post',
+    //                {
+    //                    titre: $("#titre").val(),
+    //                    lieu: $("#lieu").val(),
+    //                    debut: $("#debut").val(),
+    //                    fin: $("#fin").val(),
+    //                    description: $("#description").val()
+    //                },
+    //                function(data,status){
+    //                    if(status === "success") {
+    //                        let experienceData = JSON.parse(data);
+    //                        let attrs = `(${experienceData.titre},${experienceData.lieu},${experienceData.debut},${experienceData.fin},${experienceData.description},)`;
+    //                        let thtext = 'th:text="' + attrs + '"';
+    //                        console.log(thtext);
+    //
+    //                        let span = document.createElement('span');
+    //                        span.innerHTML = '<strong>SABA</strong>';
+    //                        div.setAttribute('th:text','saba');
+    //
+    //                        $("#content").append(div);
+    //                    }
+    //                }
+    //        );
+    //        $("#formExperience")[0].reset();
+    //    });
+
+</script>
+
+</body>
+</html>

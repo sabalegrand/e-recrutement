@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>x-editable-text</title>
+</head>
+<body>
+<th:block th:fragment="text(id,classNames,title,url,pk,text)">
+    <a href="#" th:id="${id}"
+       data-type="text"
+       th:class="${classNames}"
+       data-placement="right"
+       th:attr="data-url=${url},
+                data-pk=${pk},
+                data-title=${title}"
+       th:text="${text}">
+        x-editable-text
+    </a>
+</th:block>
+
+</body>
+</html>

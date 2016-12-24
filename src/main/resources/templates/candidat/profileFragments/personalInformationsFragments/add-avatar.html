@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Add avatar</title>
+</head>
+<body>
+
+<th:block th:fragment="add-avatar">
+    <button class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#new-avatar">
+        Changer la photo de profile
+    </button>
+
+    <div id="new-avatar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Modifier la photo de profile</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-2 center-page">
+                            <div class="form-group">
+                                <div class="img-picker"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Fermer</button>
+                    <button id="saveAvatar" type="button" class="btn btn-info waves-effect waves-light">Sauvegarder</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.modal -->
+</th:block>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Formations</title>
+</head>
+<body>
+
+
+<th:block th:fragment="formations(formations)">
+    <h4>Formations</h4>
+
+    <!-- FORMULAIRE AJOUT FORMATIONS-->
+    <button class="btn btn-primary" id="showFormationFormButton">Ajouter une nouvelle Formation</button>
+    <div th:replace="candidat/profileFragments/formationsFragments/add-formation-form :: add-formation-form">
+        Add formation form
+    </div>
+    <!-- FIN FORMULAIRE AJOUT FORMATIONS -->
+
+    <!-- LISTE LES FORMATIONS -->
+    <th:block th:each="formation : ${formations}">
+        <div th:replace="candidat/profileFragments/experiencesFragments/experience ::
+                                         experience(${formation.id},${formation.formation}, ${formation.lieu},
+                                         ${formation.debut}, ${formation.fin},
+                                         ${formation.description})"></div>
+    </th:block>
+    <!-- FIN LISTE FORMATIONS -->
+</th:block>
+
+</body>
+</html>

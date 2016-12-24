@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Test image</title>
+</head>
+<body>
+
+<div>
+    <div th:if="${images.size()} != 0">
+        <th:block th:each="image : ${images}">
+            <img th:src="@{/test/image/{id}(id=${image.id})}" alt="image" th:width="120" th:height="120"/>
+
+            <span th:text="${image.getId()}"></span><br/>
+        </th:block>
+    </div>
+    <div th:if="${images.size()} == 0">
+        Pas d'images
+    </div>
+</div>
+
+<form method="POST" th:action="@{/test/image}" enctype="multipart/form-data">
+    Image to upload: <input type="file" name="file"/><br/>
+    <input type="submit" value="Upload"/> Press here to upload the image!
+</form>
+</body>
+</html>

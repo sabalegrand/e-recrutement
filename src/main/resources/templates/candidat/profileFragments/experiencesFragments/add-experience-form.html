@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Add experience form</title>
+</head>
+<body>
+
+<th:block th:fragment="add-experience-form">
+    <form id="experienceForm" action="#" th:action="@{/candidat/experience/add}"
+          method="post"
+          class="form-horizontal">
+        <div class="form-group">
+            <label class="col-md-2 control-label">Titre</label>
+            <div class="col-md-8">
+                <input class="form-control" type="text" id="titre" name="titre"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Lieu</label>
+            <div class="col-md-6">
+                <input class="form-control" type="text" id="lieu" name="lieu"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Période</label>
+            <div class="col-md-10">
+                <div class="input-daterange input-group date-range">
+                    <input type="text" class="form-control" name="debut" />
+                    <span class="input-group-addon bg-custom text-white b-0">to</span>
+                    <input type="text" class="form-control" name="fin" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Description</label>
+            <div class="col-md-10">
+                <textarea class="form-control" rows="5" id="description" name="description"></textarea><br/>
+            </div>
+        </div>
+        <div class="form-group" id="references">
+            <label class="col-md-2 control-label">Références</label>
+
+            <div class="col-md-9">
+                <div class="references-inputs">
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" name="reference" placeholder="Reference"/>
+                    </div>
+                    <div class="col-xs-5">
+                        <input class="form-control" type="text" name="contact" placeholder="Contact"/>
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                    <button type="button" id="addReferenceButton">+</button>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-info waves-effect waves-light" type="submit" id="submitExperienceForm">Ajouter</button>
+        <button class="btn btn-danger waves-effect waves-light" type="button" id="hideExperienceFormButton">Annuler</button>
+    </form>
+</th:block>
+
+</body>
+</html>

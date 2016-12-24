@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      layout:decorator="layout">
+<head>
+    <title>Content page 1</title>
+    <link rel="stylesheet" th:href="@{/plugins/toastr/toastr.min.css}" />
+
+    <!--<link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />-->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+
+</head>
+<body>
+
+
+<div layout:fragment="content" >
+
+    <th:block sec:authorize="isAuthenticated()">
+       bijor
+
+    </th:block>
+</div>
+
+<th:block layout:fragment="script">
+    <script th:src="@{/plugins/toastr/toastr.min.js}"></script>
+    <script>
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-full-width",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "1000",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        var signupSuccess = [[${signupSuccess}]];
+        if(signupSuccess) {
+            toastr.success(signupSuccess);
+        }
+
+        var accountDeleted = [[${accountDeleted}]];
+        if(accountDeleted) {
+            toastr.warning(accountDeleted);
+        }
+        /*]]>*/
+    </script>
+</th:block>
+
+</body>
+</html>
