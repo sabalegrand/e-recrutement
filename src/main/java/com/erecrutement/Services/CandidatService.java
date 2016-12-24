@@ -12,12 +12,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class CandidatService implements ICandidatService{
 
-    @Autowired
     private CandidatRepository candidatRepository;
 
     @Autowired
     public CandidatService(CandidatRepository candidatRepository) {
-
         this.candidatRepository = candidatRepository;
     }
 

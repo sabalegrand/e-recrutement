@@ -13,8 +13,12 @@ import java.util.List;
 @Service
 public class ExperienceService implements IExperienceService {
 
-    @Autowired
     private ExperienceRepository experienceRepository;
+
+    @Autowired
+    public ExperienceService(ExperienceRepository experienceRepository) {
+        this.experienceRepository = experienceRepository;
+    }
 
     @Override
     public Experience save(Experience experience) {

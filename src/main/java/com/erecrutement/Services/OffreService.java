@@ -2,6 +2,7 @@ package com.erecrutement.Services;
 
 import com.erecrutement.Entities.Offres.Offre;
 import com.erecrutement.Repositories.OffreRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class OffreService implements IOffreService {
 
     private OffreRepository offreRepository;
 
+    @Autowired
     public OffreService(OffreRepository offreRepository) {
         this.offreRepository = offreRepository;
     }

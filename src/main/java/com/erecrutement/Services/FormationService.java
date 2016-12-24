@@ -13,8 +13,12 @@ import java.util.List;
 @Service
 public class FormationService implements IFormationService {
 
-    @Autowired
     private FormationRepository formationRepository;
+
+    @Autowired
+    public FormationService(FormationRepository formationRepository) {
+        this.formationRepository = formationRepository;
+    }
 
     @Override
     public Formation save(Formation experience) {
