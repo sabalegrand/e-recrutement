@@ -1,9 +1,10 @@
 package com.erecrutement.Entities;
 
+import com.erecrutement.Entities.Offres.OffreCandidat;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
 
 /**
  * Created by saba on 04/12/16.
@@ -19,6 +20,7 @@ import java.util.Set;
 })
 public class Candidat extends User {
 
+
     @Column(name = "civility", nullable = true)
     private String civility;
 
@@ -28,19 +30,24 @@ public class Candidat extends User {
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Collection<Cv> cvs;
+    @OneToMany(mappedBy = "candidat")
+    private Collection<OffreCandidat> offreCandidats;
+
 
     public Candidat() {
-        this.cvs = new ArrayList<>();
+        offreCandidats = new ArrayList<OffreCandidat>();
     }
 
-    public Collection<Cv> getCvs() {
-        return cvs;
+    public Candidat(String username, String firstName, String lastName, String password) {
+        super(username, firstName, lastName, password);
     }
 
-    public void setCvs(Collection<Cv> cvs) {
-        this.cvs = cvs;
+    public Collection<OffreCandidat> getOffreCandidats() {
+        return offreCandidats;
+    }
+
+    public void setOffreCandidats(Collection<OffreCandidat> offreCandidats) {
+        this.offreCandidats = offreCandidats;
     }
 
     public String getCivility() {

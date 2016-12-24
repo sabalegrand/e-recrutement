@@ -1,18 +1,29 @@
 package com.erecrutement.Entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import com.erecrutement.Entities.Offres.Offre;
+
+import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created by saba on 04/12/16.
  */
 @Entity
+@AttributeOverrides({
+        @AttributeOverride(name="email", column=@Column(name="email")),
+        @AttributeOverride(name="firstName", column=@Column(name="firstName")),
+        @AttributeOverride(name="lastName", column=@Column(name="lastName")),
+        @AttributeOverride(name="password", column=@Column(name="password")),
+        @AttributeOverride(name="personalPhoneNumber", column=@Column(name="personalPhoneNumber")),
+        @AttributeOverride(name="country", column=@Column(name="country"))
+})
 public class Entreprise  extends User {
+
 
     @Column(name = "companyName", nullable = true)
     private String companyName;
 
-//  voir relation
+    //  voir relation
 // @Column(name = "adress", nullable = false)
 //    public String adress;
 //
@@ -37,7 +48,14 @@ public class Entreprise  extends User {
     @Column(name = "fax")
     private String fax;
 
+    @OneToMany(mappedBy = "entreprise")
+    private Collection<Offre> offres;
+
     public Entreprise() {
+    }
+
+    public Entreprise(String username, String firstName, String lastName, String password) {
+        super(username, firstName, lastName, password);
     }
 
     public String getActivitySector() {
@@ -102,5 +120,13 @@ public class Entreprise  extends User {
 
     public void setWebSite(String webSite) {
         this.webSite = webSite;
+    }
+
+    public Collection<Offre> getOffres() {
+        return offres;
+    }
+
+    public void setOffres(Collection<Offre> offres) {
+        this.offres = offres;
     }
 }
