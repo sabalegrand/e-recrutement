@@ -50,8 +50,12 @@
         <div class="form-group clearfix">
             <label class="col-lg-3">Secteur d'acitivité:</label>
             <div class="col-lg-9">
-                <select class="country-select from-control"
-                        th:field="*{activitySector}"></select>
+                <select class="from-control"
+                        th:field="*{activitySector}">
+                    <option value="Secteur 1">Secteur 1</option>
+                    <option value="Secteur 2">Secteur 2</option>
+                    <option value="Secteur 3">Secteur 3</option>
+                </select>
             </div>
         </div>
 

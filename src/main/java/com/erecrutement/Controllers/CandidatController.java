@@ -70,14 +70,13 @@ public class CandidatController {
 
         Candidat candidat = candidatService.findByUsername(principal.getName());
         Collection<Cv> cvs = candidat.getCvs();
-        LocalCv localCv = null;
+        LocalCv localCv = new LocalCv();
 
         for(Cv cv: cvs) {
             if(cv instanceof LocalCv) {
                 localCv = (LocalCv)cv;
             }
         }
-
 
         model.addAttribute("candidat", candidat);
         model.addAttribute("localCv", localCv);

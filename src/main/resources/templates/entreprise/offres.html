@@ -5,15 +5,55 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Offres</title>
+    <link th:href="@{/plugins/datatables/jquery.dataTables.min.css}" rel="stylesheet" type="text/css"/>
+    <!--<link th:href="@{//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css}" rel="stylesheet" type="text/css"/>-->
+
 </head>
 <body>
 
 <th:block layout:fragment="content">
-    <div th:each="offre : ${offres}" >
-        <span th:text="${offre.title}"></span>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box table-responsive">
+                <h4 class="m-t-0 header-title"><b>Offres</b></h4>
+
+                <table id="offres" class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Titre</th>
+                        <th>Date de publication</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="offre : ${offres}">
+                        <td th:text="${offre.id}"></td>
+                        <td>
+                            <a th:href="@{/entreprise/offre/{id}(id=${offre.id})}" th:text="${offre.title}"></a>
+                        </td>
+                        <td th:text="${offre.datePublished}"></td>
+                        <td>Supprimer</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
     </div>
 </th:block>
 
+<th:block layout:fragment="script">
+    <script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/plugins/datatables/dataTables.bootstrap.js}"></script>
+    <!--<script th:src="@{//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js}"></script>-->
+    <script>
+        $(document).ready(function () {
+            $('#offres').dataTable();
+        });
+    </script>
+
+</th:block>
 
 </body>
 </html>

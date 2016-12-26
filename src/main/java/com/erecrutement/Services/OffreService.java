@@ -36,6 +36,11 @@ public class OffreService implements IOffreService {
     }
 
     @Override
+    public Offre update(Offre offre) {
+        return offreRepository.save(offre);
+    }
+
+    @Override
     public List<Offre> findAll() {
         return offreRepository.findAll();
     }

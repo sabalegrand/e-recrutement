@@ -9,86 +9,89 @@
 <body>
 
 <th:block layout:fragment="content">
+
     <div class="row center-page col-lg-6">
-        <h3>Ajouter une nouvelle offre</h3>
-        <div>
-            <form id="signupCandidatForm"
-                  th:action="@{/entreprise/offre/add}"
-                  method="post">
+        <div class="card-box">
+            <h3>Ajouter une nouvelle offre</h3>
+            <div>
+                <form id="signupCandidatForm"
+                      th:action="@{/entreprise/offre/add}"
+                      method="post">
 
-                <div class="form-group clearfix">
-                    <label class="col-lg-3">Titre
-                        <span class="text-danger">*</span>
-                    </label>
-                    <div class="col-lg-9">
-                        <input class="form-control" type="text" placeholder="Titre" name="title"/>
+                    <div class="form-group clearfix">
+                        <label class="col-lg-3">Titre
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="text" placeholder="Titre" name="title"/>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group clearfix">
-                    <label class="col-lg-3">Lieu
-                        <span class="text-danger">*</span>
-                    </label>
-                    <div class="col-lg-9">
-                        <input class="form-control" type="text" placeholder="Lieu" name="place"/>
+                    <div class="form-group clearfix">
+                        <label class="col-lg-3">Lieu
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="text" placeholder="Lieu" name="place"/>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group clearfix">
-                    <label class="col-lg-3">Description
-                        <span class="text-danger">*</span>
-                    </label>
-                    <div class="col-lg-9">
-                        <textarea class="form-control col-lg-9" name="description" rows="5"></textarea>
+                    <div class="form-group clearfix">
+                        <label class="col-lg-3">Description
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-lg-9">
+                            <textarea class="form-control col-lg-9" name="description" rows="5"></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group clearfix">
-                    <label class="col-lg-3">Mission:
-                        <span class="text-danger">*</span>
-                    </label>
-                    <div class="col-lg-9">
-                        <textarea class="form-control col-lg-9" name="missions" rows="5"></textarea>
+                    <div class="form-group clearfix">
+                        <label class="col-lg-3">Mission:
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-lg-9">
+                            <textarea class="form-control col-lg-9" name="missions" rows="5"></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group clearfix">
-                    <label class="col-lg-3">Profile:
-                        <span class="text-danger">*</span>
-                    </label>
-                    <div class="col-lg-9">
-                        <textarea class="form-control col-lg-9" name="requis" rows="5"></textarea>
+                    <div class="form-group clearfix">
+                        <label class="col-lg-3">Profile:
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-lg-9">
+                            <textarea class="form-control col-lg-9" name="requis" rows="5"></textarea>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group clearfix">
-                    <label class="col-lg-3">Rémunération:</label>
-                    <div class="col-lg-9">
-                        <input class="form-control" type="text" name="remuneration"/>
+                    <div class="form-group clearfix">
+                        <label class="col-lg-3">Rémunération:</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="text" name="remuneration" value="0"/>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group clearfix">
-                    <label class="col-lg-3">Type:
-                        <span class="text-danger">*</span>
-                    </label>
-                    <div class="col-lg-9">
-                        <select name="type" id="typeOffre">
-                            <option value="cdi">CDI</option>
-                            <option value="cdd">CDD</option>
-                            <option value="pfe" selected="">PFE</option>
-                        </select>
+                    <div class="form-group clearfix">
+                        <label class="col-lg-3">Type:
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="col-lg-9">
+                            <select name="type" id="typeOffre">
+                                <option value="cdi">CDI</option>
+                                <option value="cdd">CDD</option>
+                                <option value="pfe" selected="">PFE</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <div id="typeSpecificInputsDiv"></div>
+                    <div id="typeSpecificInputsDiv"></div>
 
-                <div class="form-group text-right m-b-0">
-                    <button type="submit" class="btn btn-primary waves-effect waves-light">
-                        Ajouter
-                    </button>
-                </div>
-            </form>
+                    <div class="form-group text-right m-b-0">
+                        <button type="submit" class="btn btn-primary waves-effect waves-light">
+                            Ajouter
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </th:block>
