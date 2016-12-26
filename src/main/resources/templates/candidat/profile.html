@@ -8,10 +8,11 @@
     <meta charset="UTF-8"/>
     <title>Profile</title>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
-    <link th:href="@{/css/select2.css}" rel="stylesheet" type="text/css" />
-    <link th:href="@{/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css}" rel="stylesheet" />
-    <link th:href="@{/plugins/imagepicker/imagepicker.css}" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
+          rel="stylesheet"/>
+    <link th:href="@{/css/select2.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css}" rel="stylesheet"/>
+    <link th:href="@{/plugins/imagepicker/imagepicker.css}" rel="stylesheet" type="text/css"/>
 
 </head>
 <body>
@@ -19,47 +20,48 @@
 <div layout:fragment="content">
     <div class="row">
         <div class="col-sm-12">
-            <div class="card-box">
+            <div>
                 <div class="row">
-                    <div class="col-lg-3 col-md-4">
+                    <div class="col-md-4 col-lg-3 ">
                         <div class="text-center card-box">
-
                             <div th:replace="candidat/profileFragments/personal-informations :: personal-informations">
                                 Info personnelles
                             </div>
-
                         </div>
-
                     </div> <!-- end col -->
                     <div class="col-md-8 col-lg-9">
 
                         <!-- DEBUT COMPETENCES -->
-                        <div th:replace="candidat/profileFragments/competences :: competences">
-                            Compétences
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card-box">
+                                <div th:replace="candidat/profileFragments/competences :: competences">
+                                    Compétences
+                                </div>
+                            </div>
                         </div>
                         <!-- FIN COMPETENCES -->
 
-                        <hr/>
-
                         <!-- DEBUT EXPERIENCES -->
+
                         <div class="col-md-12 col-sm-12">
-                            <div th:replace="candidat/profileFragments/experiences :: experiences(${experiences})">
-                                Expériences
+                            <div class="card-box">
+                                <div th:replace="candidat/profileFragments/experiences :: experiences(${experiences})">
+                                    Expériences
+                                </div>
                             </div>
                         </div>
                         <!-- FIN EXPERIENCES -->
 
                         <!-- DEBUT FORMATIONS -->
                         <div class="col-md-12 col-sm-12">
-                            <div th:replace="candidat/profileFragments/formations :: formations(${formations})">
-                                Formations
+                            <div class="card-box">
+                                <div th:replace="candidat/profileFragments/formations :: formations(${formations})">
+                                    Formations
+                                </div>
                             </div>
                         </div>
                         <!-- FIN FORMATIONS -->
 
-                        <!-- DEBUT CV -->
-
-                        <!-- FIN CV -->
                     </div>
                     <!-- end col -->
                 </div>
@@ -75,7 +77,7 @@
     <script th:src="@{/plugins/country.js}"></script>
     <script>
         // editable infos persos
-        $(document).ready(function() {
+        $(document).ready(function () {
             //toggle `popup` / `inline` mode
             $.fn.editable.defaults.mode = 'popup';
 
@@ -103,31 +105,31 @@
 
     <!-- SCRIPT FORMULAIRE AJOUT EXP + FORMATION-->
     <script>
-        (function() {
+        (function () {
 
             // experience form
             const experienceForm = $("#experienceForm");
             const formationForm = $("#formationForm");
-            const showExperienceFormButton =  $("#showExperienceFormButton");
-            const showFormationFormButton =  $("#showFormationFormButton");
+            const showExperienceFormButton = $("#showExperienceFormButton");
+            const showFormationFormButton = $("#showFormationFormButton");
 
             experienceForm.hide();
             formationForm.hide();
-                /*** EXPERIENCES ***/
-            showExperienceFormButton.click(function() {
+            /*** EXPERIENCES ***/
+            showExperienceFormButton.click(function () {
                 experienceForm.css('display') === 'none' ? experienceForm.show() : experienceForm.hide();
                 $(this).hide();
             });
-            $("#hideExperienceFormButton").click(function() {
+            $("#hideExperienceFormButton").click(function () {
                 experienceForm.hide();
                 showExperienceFormButton.show();
             });
-                /*** FORMATIONS ***/
-            showFormationFormButton.click(function() {
+            /*** FORMATIONS ***/
+            showFormationFormButton.click(function () {
                 formationForm.css('display') === 'none' ? formationForm.show() : formationForm.hide();
                 $(this).hide();
             });
-            $("#hideFormationFormButton").click(function() {
+            $("#hideFormationFormButton").click(function () {
                 formationForm.hide();
                 showFormationFormButton.show();
             });
@@ -149,7 +151,7 @@
 
 
             addReferenceButton.click(function () {
-                 $(this).parent().before(referencesInputs);
+                $(this).parent().before(referencesInputs);
             });
 
         })();
