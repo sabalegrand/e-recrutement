@@ -11,13 +11,13 @@ File: Menu
   padding-right: 15px;
 }
 .wrapper {
-  padding-top: 114px;
+  padding-top: 130px;
   max-width: 1200px;
   margin: 0 auto;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  /*box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);*/
   padding-bottom: 65px;
-  background-color: #ffffff;
-  min-height: 1100px;
+  /*background-color: #ffffff;*/
+  min-height: 600px;
 }
 .page-title-box {
   padding: 30px 0;
@@ -39,7 +39,7 @@ File: Menu
   -webkit-transition: all .5s ease;
   transition: all .5s ease;
   min-height: 62px;
-  max-width: 1200px;
+  /*max-width: 1200px;*/
   margin: 0 auto;
 }
 #topnav .has-submenu.active a {
@@ -151,7 +151,7 @@ File: Menu
   color: rgba(255, 255, 255, 0.8);
 }
 #topnav .navbar-custom {
-  background-color: #f3f3f3;
+  background-color: #FFFFFF;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 #topnav .navbar-toggle {
@@ -491,7 +491,7 @@ File: Menu
   position: absolute;
   right: 0;
   left: 0;
-  max-width: 1200px;
+  /*max-width: 1200px;*/
   margin: 0 auto;
 }
 .footer ul li {

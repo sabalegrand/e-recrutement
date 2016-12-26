@@ -167,35 +167,6 @@ public class EntrepriseController {
 
         return ResponseEntity.ok("ok");
     }
-    @PostMapping("/offre/edit/description")
-    public ResponseEntity<String> editDescription(@RequestParam("id") String id, @RequestParam("data") String data) {
-        Offre o = offreService.find(Integer.parseInt(id));
-
-        o.setDescription(data);
-        offreService.update(o);
-
-        return ResponseEntity.ok("ok");
-    }
-    @PostMapping("/offre/edit/missions")
-    public ResponseEntity<String> editMissions(@ModelAttribute XeditableForm form) {
-        Offre o = offreService.find(Integer.parseInt(form.getPk()));
-        String missions  = form.getValue().replaceAll("\\r?\\n", "<br />");
-
-        o.setMissions(missions);
-        offreService.update(o);
-
-        return ResponseEntity.ok("ok");
-    }
-    @PostMapping("/offre/edit/requis")
-    public ResponseEntity<String> editRequis(@ModelAttribute XeditableForm form) {
-        Offre o = offreService.find(Integer.parseInt(form.getPk()));
-        String requis  = form.getValue().replaceAll("\\r?\\n", "<br />");
-
-        o.setRequis(requis);
-        offreService.update(o);
-
-        return ResponseEntity.ok("ok");
-    }
     @PostMapping("/offre/edit/post")
     public ResponseEntity<String> editPost(@ModelAttribute XeditableForm form) {
         Offre o = offreService.find(Integer.parseInt(form.getPk()));
@@ -208,6 +179,39 @@ public class EntrepriseController {
             OffreCDI offre = (OffreCDI)o;
             offre.setPoste(post);
         }
+        offreService.update(o);
+
+        return ResponseEntity.ok("ok");
+    }
+
+
+    // SUMMERNOTE
+    @PostMapping("/offre/edit/description")
+    public ResponseEntity<String> editDescription(@RequestParam("id") String id,
+                                                  @RequestParam("data") String data) {
+        Offre o = offreService.find(Integer.parseInt(id));
+
+        o.setDescription(data);
+        offreService.update(o);
+
+        return ResponseEntity.ok("ok");
+    }
+    @PostMapping("/offre/edit/missions")
+    public ResponseEntity<String> editMissions(@RequestParam("id") String id,
+                                               @RequestParam("data") String data) {
+        Offre o = offreService.find(Integer.parseInt(id));
+
+        o.setMissions(data);
+        offreService.update(o);
+
+        return ResponseEntity.ok("ok");
+    }
+    @PostMapping("/offre/edit/requis")
+    public ResponseEntity<String> editRequis(@RequestParam("id") String id,
+                                             @RequestParam("data") String data) {
+        Offre o = offreService.find(Integer.parseInt(id));
+
+        o.setRequis(data);
         offreService.update(o);
 
         return ResponseEntity.ok("ok");

@@ -18,9 +18,10 @@
     <div class="row">
 
         <h3 th:text="${#strings.capitalize(offre.title)}"></h3>
+        <!-- INFOS GENERALES -->
         <div class="col-md-8 center-page">
             <div class="card-box">
-                <h4>Informations générales</h4>
+                <h4 style="color: #188ae2 !important">Informations générales</h4>
 
                 <div>
                     <strong>Date de publication:</strong>
@@ -67,6 +68,7 @@
                 </div>
             </div>
         </div>
+        <!-- FIN INFOS GENERALES -->
 
         <!-- DESCRIPTION OFFRE -->
         <div class="col-md-8 center-page">
@@ -76,12 +78,12 @@
                         Description de l'offre
                     </h3>
                     <div class="portlet-widgets">
-                        <a id="modifierDescription" class="btn btn-red btn-circle"><i class="ion-edit"></i></a>
-                        <a id="sauvegarderDescription" class="btn btn-red btn-circle"><i class="ion-archive"></i></a>
+                        <a  class="btn btn-red btn-circle modifier-description"><i class="ion-edit"></i></a>
+                        <a  class="btn btn-red btn-circle sauvegarder-description"><i class="ion-archive"></i></a>
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <div id="bg-default">
+                <div class="bg-default">
                     <div class="portlet-body">
                         <div id="descriptionDiv" th:utext="${offre.description}"></div>
                     </div>
@@ -92,12 +94,22 @@
 
         <!-- MISSIONS -->
         <div class="col-md-8 center-page">
-            <div class="card-box">
-                <h4>Missions</h4>
-
-                <div th:replace="components/x-editable/textarea ::
-                     textarea('missions','','Missions','/entreprise/offre/edit/missions',${offre.id},${offre.missions})">
-                    Missions
+            <div class="portlet">
+                <div class="portlet-heading portlet-default">
+                    <h3 class="text-custom portlet-title" style="color: #188ae2 !important">
+                        Missions
+                    </h3>
+                    <div class="portlet-widgets">
+                        <a  class="btn btn-red btn-circle modifier-description"><i class="ion-edit"></i></a>
+                        <a  class="btn btn-red btn-circle sauvegarder-description"><i class="ion-archive"></i></a>
+                        <a  class="btn btn-red btn-circle annuler-description"><i class="ion-close "></i></a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="bg-default">
+                    <div class="portlet-body">
+                        <div id="missionsDiv" th:utext="${offre.missions}"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -105,12 +117,21 @@
 
         <!-- PROFILE -->
         <div class="col-md-8 center-page">
-            <div class="card-box">
-                <h4>Profile recherché</h4>
-
-                <div th:replace="components/x-editable/textarea ::
-                     textarea('requis','','Profile recherché','/entreprise/offre/edit/requis',${offre.id},${offre.requis})">
-                    Profile
+            <div class="portlet">
+                <div class="portlet-heading portlet-default">
+                    <h3 class="text-custom portlet-title" style="color: #188ae2 !important">
+                        Profile recherché
+                    </h3>
+                    <div class="portlet-widgets">
+                        <a  class="btn btn-red btn-circle modifier-description"><i class="ion-edit"></i></a>
+                        <a  class="btn btn-red btn-circle sauvegarder-description"><i class="ion-archive"></i></a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="bg-default">
+                    <div class="portlet-body">
+                        <div id="profileDiv" th:utext="${offre.requis}"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -142,52 +163,68 @@
     <script th:inline="javascript">
         /*<![CDATA[*/
         const options = {
+            height: 150,
             toolbar: [
                 ['style', ['bold', 'italic', 'underline', 'clear']],
                 ['fontsize', ['fontsize']],
-                ['para', ['ul', 'ol', 'paragraph']]]
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']]
+            ]
         };
-
-        function initDescription() {
-            const modifierButton = $('#modifierDescription');
-            const sauvegarderButton = $('#sauvegarderDescription');
-            const descriptionDiv = $('#descriptionDiv');
+        function initSummernote(containerId, postObject) {
+            const container = $('#' + containerId);
+            const modifierButton = container.parent().parent().parent().find('.modifier-description');
+            const sauvegarderButton = container.parent().parent().parent().find('.sauvegarder-description');;
+            const annulerbutton = container.parent().parent().parent().find('.annuler-description');;
             let oldDescription, newDescription, offreId;
 
             sauvegarderButton.hide();
+            annulerbutton.hide();
 
             modifierButton.click(function () {
                 $(this).hide();
                 sauvegarderButton.show();
-                descriptionDiv.summernote(options);
-                oldDescription = descriptionDiv.summernote('code');
+                annulerbutton.show();
+                container.summernote(options);
+                oldDescription = container.summernote('code');
             });
             sauvegarderButton.click(function () {
                 $(this).hide();
+                annulerbutton.hide();
                 modifierButton.show();
 
-                offreId = [[${offre.id}]];
-                newDescription = descriptionDiv.summernote('code');
-                descriptionDiv.summernote('destroy');
+                newDescription = container.summernote('code');
+                container.summernote('destroy');
 
                 if(oldDescription !== newDescription) {
-                    $.post(
-                            '/entreprise/offre/edit/description',
-                            {
-                                id: offreId,
-                                data: descriptionText
-                            },
-                            function(data, status) {
-                                //TODO: faire test erreur
-                            }
-                    );
+                    $.post(postObject.url, {
+                        id: postObject.id,
+                        data: newDescription
+                    });
                 }
             });
+            annulerbutton.click(function () {
+                annulerbutton.hide();
+                sauvegarderButton.hide();
+                modifierButton.show();
+
+                container.summernote('destroy');
+                container.html(oldDescription);
+            });
         }
-
-        initDescription();
-
-
+        const offreId = [[${offre.id}]];
+        initSummernote('descriptionDiv', {
+            url: '/entreprise/offre/edit/description',
+            id: offreId
+        });
+        initSummernote('missionsDiv', {
+            url: '/entreprise/offre/edit/missions',
+            id: offreId
+        });
+        initSummernote('profileDiv', {
+            url: '/entreprise/offre/edit/requis',
+            id: offreId
+        });
         /*]]>*/
     </script>
     <!-- FIN SUMMERNOTE -->
