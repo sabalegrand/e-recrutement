@@ -3,12 +3,14 @@ package com.erecrutement.Services;
 import com.erecrutement.Entities.Offres.Offre;
 import com.erecrutement.Repositories.OffreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by nunna on 24/12/16.
  */
+@Service
 public class OffreService implements IOffreService {
 
     private OffreRepository offreRepository;

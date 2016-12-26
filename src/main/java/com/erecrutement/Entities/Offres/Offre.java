@@ -18,11 +18,11 @@ public abstract class Offre {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
 
-    @Column(name = "reference", unique = true)
-    private String reference;
-
     @Column(name = "title", nullable = false)
     private String title;
+
+    @Column(name = "place")
+    private String place;
 
     @Column(name = "description")
     private String description;
@@ -52,7 +52,23 @@ public abstract class Offre {
     private Collection<OffreCandidat> offreCandidats;
 
     public Offre() {
-        offreCandidats = new ArrayList<OffreCandidat>();
+        offreCandidats =new ArrayList<>();
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public Collection<OffreCandidat> getOffreCandidats() {
+        return offreCandidats;
+    }
+
+    public void setOffreCandidats(Collection<OffreCandidat> offreCandidats) {
+        this.offreCandidats = offreCandidats;
     }
 
     public int getId() {

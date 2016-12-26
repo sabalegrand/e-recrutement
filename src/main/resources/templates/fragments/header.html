@@ -68,39 +68,12 @@
         </div> <!-- end container -->
     </div>
     <!-- end topbar-main -->
-    <div class="navbar-custom">
-        <div class="container">
-            <div id="navigation">
-                <!-- Navigation Menu-->
-                <ul class="navigation-menu">
 
-                    <li class="has-submenu">
-                        <a href="#"><i class="mdi mdi-view-dashboard"></i>Dashboard</a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="index.html">Dashboard 01</a>
-                            </li>
-                            <li>
-                                <a href="dashboard_2.html">Dashboard 02</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="has-submenu">
-                        <a href="#"><i class="mdi mdi-view-dashboard"></i>Dashboard</a>
-                        <ul class="submenu">
-                            <li>
-                                <a href="index.html">Dashboard 01</a>
-                            </li>
-                            <li>
-                                <a href="dashboard_2.html">Dashboard 02</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <!-- End navigation menu -->
-            </div> <!-- end #navigation -->
-        </div> <!-- end container -->
-    </div> <!-- end navbar-custom -->
+    <!--  NAVBAR-->
+    <div th:replace="fragments/headerFragments/navbar :: navbar">
+        Navbar
+    </div>
+    <!-- END NAVBAR -->
 </div>
 
 </body>

@@ -28,5 +28,15 @@ public class UserService implements IUserService{
         userRepository.delete(username);
     }
 
+    @Override
+    public User save(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User update(User user) {
+        return userRepository.save(user);
+    }
+
 
 }

@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 public class OffreCDI extends Offre {
 
     @Column(name = "poste")
-   private String poste;
+    private String poste;
 
     public OffreCDI() {
     }

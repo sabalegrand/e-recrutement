@@ -17,7 +17,7 @@ public class OffreCandidat {
     private int id;
 
     @ManyToOne
-    private  Offre offre;
+    private Offre offre;
 
     @ManyToOne
     private Candidat candidat;

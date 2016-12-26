@@ -1,5 +1,7 @@
 package com.erecrutement;
 
+import com.erecrutement.Entities.Role;
+import com.erecrutement.Repositories.RoleRepository;
 import com.erecrutement.Repositories.UserRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,16 +11,16 @@ import org.springframework.context.ApplicationContext;
 public class ProjetV1Application {
 
 
-
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
         ApplicationContext ctx = SpringApplication.run(ProjetV1Application.class, args);
 
-//        RoleRepository roleRepository = ctx.getBean(RoleRepository.class);
-   //     UserRepository userRepository= ctx.getBean(UserRepository.class);
+        //     UserRepository userRepository= ctx.getBean(UserRepository.class);
 //        CandidatRepository candidatRepository = ctx.getBean(CandidatRepository.class);
 //        EntrepriseRepository entrepriseRepository = ctx.getBean(EntrepriseRepository.class);
 //
+        //        RoleRepository roleRepository = ctx.getBean(RoleRepository.class);
+
 //        Role role1 = roleRepository.save(new Role("CANDIDAT", ""));
 //        Role role2 = roleRepository.save(new Role("ENTREPRISE", ""));
 //        roleRepository.save(new Role("ADMIN", ""));

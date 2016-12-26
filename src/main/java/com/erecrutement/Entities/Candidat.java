@@ -30,16 +30,28 @@ public class Candidat extends User {
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "candidat")
+    @OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
     private Collection<OffreCandidat> offreCandidats;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Collection<Cv> cvs;
 
 
     public Candidat() {
+        cvs = new ArrayList<>();
         offreCandidats = new ArrayList<OffreCandidat>();
     }
 
     public Candidat(String username, String firstName, String lastName, String password) {
         super(username, firstName, lastName, password);
+    }
+
+    public Collection<Cv> getCvs() {
+        return cvs;
+    }
+
+    public void setCvs(Collection<Cv> cvs) {
+        this.cvs = cvs;
     }
 
     public Collection<OffreCandidat> getOffreCandidats() {

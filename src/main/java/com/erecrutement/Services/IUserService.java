@@ -8,4 +8,6 @@ import com.erecrutement.Entities.User;
 public interface IUserService {
     public User findByUsername(String username);
     public void delete(String username);
+    public User save(User user);
+    public User update(User user);
 }

@@ -3,6 +3,7 @@ package com.erecrutement.Entities;
 import com.erecrutement.Entities.Offres.Offre;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -18,7 +19,6 @@ import java.util.Collection;
         @AttributeOverride(name="country", column=@Column(name="country"))
 })
 public class Entreprise  extends User {
-
 
     @Column(name = "companyName", nullable = true)
     private String companyName;
@@ -52,6 +52,7 @@ public class Entreprise  extends User {
     private Collection<Offre> offres;
 
     public Entreprise() {
+        offres = new ArrayList<>();
     }
 
     public Entreprise(String username, String firstName, String lastName, String password) {
