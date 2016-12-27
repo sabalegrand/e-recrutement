@@ -33,7 +33,9 @@
                             <a th:href="@{/entreprise/offre/{id}(id=${offre.id})}" th:text="${offre.title}"></a>
                         </td>
                         <td th:text="${offre.datePublished}"></td>
-                        <td>Supprimer</td>
+                        <td class="text-center">
+                            <button data-toggle="tooltip" title="Supprimer l'offre" class="btn btn-icon waves-effect btn-danger btn-supprimer-offre"> <i class="glyphicon glyphicon-trash"></i> </button>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -50,6 +52,12 @@
     <script>
         $(document).ready(function () {
             $('#offres').dataTable();
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <script>
+        $('.btn-supprimer-offre').click(function () {
+
         });
     </script>
 

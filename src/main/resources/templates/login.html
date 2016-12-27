@@ -8,10 +8,10 @@
 
 <div layout:fragment="content">
     <div class="row">
-        <div class="card-box center-page col-md-5">
+        <div class="card-box center-page col-sm-7 col-md-5">
             <div th:fragment="login-form">
                 <div th:if="${param.error}">
-                    Invalid username and password.
+                    Identifiants incorrectes.
                 </div>
                 <div th:if="${param.logout}">
                     You have been logged out.
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div>
-                        <input class="btn btn-primary" type="submit" value="Sign In"/>
+                        <input class="col-md-offset-2 btn btn-primary" type="submit" value="Sign In"/>
                     </div>
                 </form>
             </div>
