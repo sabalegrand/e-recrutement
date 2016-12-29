@@ -57,7 +57,7 @@ public class CandidatController {
 
     @RequestMapping("/deleteAccount")
     public String deleteAccount (RedirectAttributes redirectAttributes, Principal principal) {
-
+            //test
         candidatService.delete(principal.getName());
 
         redirectAttributes.addFlashAttribute("accountDeleted", "Votre compte a bien été supprimer.");
