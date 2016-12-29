@@ -19,11 +19,11 @@ public class ProjetV1Application {
 //        CandidatRepository candidatRepository = ctx.getBean(CandidatRepository.class);
 //        EntrepriseRepository entrepriseRepository = ctx.getBean(EntrepriseRepository.class);
 //
-        //        RoleRepository roleRepository = ctx.getBean(RoleRepository.class);
+                RoleRepository roleRepository = ctx.getBean(RoleRepository.class);
 
-//        Role role1 = roleRepository.save(new Role("CANDIDAT", ""));
-//        Role role2 = roleRepository.save(new Role("ENTREPRISE", ""));
-//        roleRepository.save(new Role("ADMIN", ""));
+      Role role1 = roleRepository.save(new Role("CANDIDAT", ""));
+        Role role2 = roleRepository.save(new Role("ENTREPRISE", ""));
+        roleRepository.save(new Role("ADMIN", ""));
 //
 //        Candidat candidat1 = candidatRepository.save(new Candidat("tsertsvadzesaba@gmail.com"
 //                , "Saba", "Tsertsvadze", "123"));
