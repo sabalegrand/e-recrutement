@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
 <head>
     <meta charset="UTF-8" />
     <title>Offres</title>
 </head>
 <body>
+
+<th:block layout:fragment="content">
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card-box">
+                RECHERCHE NORMALEMENT
+            </div>
+        </div>
+        <div class="col-md-8">
+            <th:block th:each="offre :${offres}">
+                <div th:replace="offres/indexFragments/offre :: offre(${offre})">
+                    liste offres
+                </div>
+            </th:block>
+        </div>
+    </div>
+
+</th:block>
+
 
 </body>
 </html>

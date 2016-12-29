@@ -27,6 +27,7 @@ public abstract class Offre {
     @Column(name = "description")
     private String description;
 
+    @Temporal(value = TemporalType.DATE)
     @Column(name = "datePublished", nullable = false)
     private Date datePublished;
 
