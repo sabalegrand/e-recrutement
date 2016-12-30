@@ -1,0 +1,11 @@
+.recherche {
+    position: fixed;
+}
+/*
+TODO: gérér petit écran pour recherche
+*/
+@media (max-width: 600px) {
+    .recherche {
+        position: relative;
+    }
+}

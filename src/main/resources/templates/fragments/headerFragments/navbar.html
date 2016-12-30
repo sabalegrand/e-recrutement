@@ -26,12 +26,23 @@
                         </ul>
                     </li>
 
-                    <!-- MENU OFFRES ( ENTREPRISE ) -->
-                    <li class="has-submenu" sec:authorize-url="/entreprise">
+                    <!-- MENU OFFRES   -->
+                    <li class="has-submenu" sec:authorize-url="/offres">
                         <a href="#"><i class="mdi mdi-view-dashboard"></i>Offres</a>
                         <ul class="submenu">
                             <li>
-                                <a th:href="@{/entreprise/offres}">Mes offres</a>
+                                <a th:href="@{/entreprise/offres}">Consulter les offres</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- FIN MENU OFFRES  -->
+
+                    <!-- MENU OFFRES ( ENTREPRISE ) -->
+                    <li class="has-submenu" sec:authorize-url="/entreprise">
+                        <a href="#"><i class="mdi mdi-view-dashboard"></i>Mes Offres</a>
+                        <ul class="submenu">
+                            <li>
+                                <a th:href="@{/entreprise/offres}">Consulter mes offres</a>
                             </li>
                             <li>
                                 <a th:href="@{/entreprise/offre/add}">Ajouter une offre</a>

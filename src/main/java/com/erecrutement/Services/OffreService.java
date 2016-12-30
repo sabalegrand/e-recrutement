@@ -3,6 +3,8 @@ package com.erecrutement.Services;
 import com.erecrutement.Entities.Offres.Offre;
 import com.erecrutement.Repositories.OffreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,5 +45,10 @@ public class OffreService implements IOffreService {
     @Override
     public List<Offre> findAll() {
         return offreRepository.findAll();
+    }
+
+    @Override
+    public Page<Offre> findAll(Pageable pageable) {
+        return offreRepository.findAll(pageable);
     }
 }

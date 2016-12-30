@@ -5,7 +5,10 @@ import com.erecrutement.Repositories.RoleRepository;
 import com.erecrutement.Repositories.UserRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
+import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class ProjetV1Application {
@@ -45,4 +48,13 @@ public class ProjetV1Application {
 //
 //        user.getRoles().forEach(role -> System.out.println(role.getRole()));
     }
+
+//    @Bean
+//    public EmbeddedServletContainerCustomizer containerCustomizer() {
+//        return (container -> {
+//            //route all errors towards /error .
+//            final ErrorPage errorPage=new ErrorPage("/error");
+//            container.addErrorPages(errorPage);
+//        });
+//    }
 }
