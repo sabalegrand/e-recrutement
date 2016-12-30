@@ -10,11 +10,20 @@ import java.util.Date;
 @Component
 public class OffreViewModel {
 
+    private int id;
     private String title;
     private Date datePublished;
     private byte[] logo;
     private String type;
     private String entreprise;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Date getDatePublished() {
         return datePublished;

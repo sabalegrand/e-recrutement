@@ -17,52 +17,23 @@
             </div>
         </div>
         <div class="col-xs-8">
-            <!--<th:block th:each="offre :${offres}">-->
-                <!--<div th:replace="offres/indexFragments/offre :: offre(${offre})">-->
-                    <!--liste offres-->
-                <!--</div>-->
-            <!--</th:block>-->
             <div id="offresDiv">
-
             </div>
+            <!-- TODO: centrer spinner -->
+            <div class="row">
+                <div id="loading" class="center-page">
+                    <img th:src="@{/images/loading.gif}" alt="Loading…"/>
+                </div>
+            </div>
+
         </div>
     </div>
 
 </th:block>
 
 <th:block layout:fragment="script">
-
     <!-- SCRIPT AFFICHAGE OFFRES -->
-    <script>
-
-        (function (container) {
-
-            const offresLoader = {
-                url: "offres/load?",
-                params: {
-                    page: 0,
-                    size: 2
-                },
-                load: function () {
-                    const url = this.url + $.param(this.params);
-                    let params = this.params;
-                    $.get(url,
-                            function (data, status) {
-                                if(status === "success") {
-                                    params.page ++;
-
-                                    data.offres.forEach(function(offre) {
-                                        console.log(offre.title + '\n');
-                                    });
-                                }
-                            });
-                }
-            };
-
-            offresLoader.load();
-
-        })($('#offresDiv'));
-    </script>
+    <script th:src="@{/pages/offres/offres.index.js}"></script>
 </th:block>
 
 

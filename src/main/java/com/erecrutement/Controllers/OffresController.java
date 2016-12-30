@@ -41,12 +41,12 @@ public class OffresController {
     @ResponseBody
     public OffresViewModel offres(Pageable pageable) {
 
-
         OffresViewModel offres = new OffresViewModel();
         Page<Offre> res = offreService.findAll(pageable);
 
         res.forEach(offre -> {
             OffreViewModel offreViewModel = new OffreViewModel();
+            offreViewModel.setId(offre.getId());
             offreViewModel.setTitle(offre.getTitle());
             offreViewModel.setDatePublished(offre.getDatePublished());
             offreViewModel.setEntreprise(offre.getEntreprise().getCompanyName());
