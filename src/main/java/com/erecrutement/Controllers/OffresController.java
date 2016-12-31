@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -57,4 +58,12 @@ public class OffresController {
         return offres;
     }
 
+
+    @RequestMapping("/details/{id}")
+    public String offreDetails(@PathVariable("id") int id, Model model) {
+
+
+
+        return "offres/offre-details";
+    }
 }
