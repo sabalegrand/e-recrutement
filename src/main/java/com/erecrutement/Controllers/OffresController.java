@@ -2,6 +2,7 @@ package com.erecrutement.Controllers;
 
 import com.erecrutement.Entities.Candidat;
 import com.erecrutement.Entities.Offres.Offre;
+import com.erecrutement.Entities.Offres.OffreCandidat;
 import com.erecrutement.Helpers.OffreHelper;
 import com.erecrutement.Services.CandidatService;
 import com.erecrutement.Services.OffreService;
@@ -19,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.security.RolesAllowed;
 import java.security.Principal;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -83,8 +86,21 @@ public class OffresController {
         return "offres/offre-details";
     }
 
+    @RolesAllowed(value = "ROLE_CANDIDAT")
     @RequestMapping("/postuler/{id}")
-    public String postuler(@PathVariable("id") int id) {
+    public String postuler(@PathVariable("id") int id, Principal principal) {
+
+        Candidat candidat = candidatService.findByUsername(principal.getName());
+        Offre offre = offreService.find(id);
+        OffreCandidat offreCandidat = new OffreCandidat();
+        offreCandidat.setCandidat(candidat);
+        offreCandidat.setOffre(offre);
+        offreCandidat.setDatePostul(new Date());
+        offreCandidat.setState(OffreHelper.ENATTENTE);
+
+        candidat.getOffreCandidats().add(offreCandidat);
+
+        candidatService.update(candidat);
 
         return "redirect:/offres/";
     }

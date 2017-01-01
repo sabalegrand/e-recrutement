@@ -22,6 +22,7 @@ public class OffreCandidat {
     @ManyToOne
     private Candidat candidat;
 
+    @Temporal(value = TemporalType.DATE)
     @Column(name = "datePostul")
     private Date datePostul;
 

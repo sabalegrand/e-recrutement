@@ -10,6 +10,8 @@ import com.erecrutement.Entities.Offres.OffrePFE;
  */
 public class OffreHelper {
 
+    public static final String ENATTENTE = "en attente";
+
     public static String offreType(Offre offre) {
 
         String type = null;
