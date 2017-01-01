@@ -1,6 +1,9 @@
 package com.erecrutement.Controllers;
 
+import com.erecrutement.Entities.Candidat;
 import com.erecrutement.Entities.Offres.Offre;
+import com.erecrutement.Helpers.OffreHelper;
+import com.erecrutement.Services.CandidatService;
 import com.erecrutement.Services.OffreService;
 import com.erecrutement.ViewModels.OffreViewModel;
 import com.erecrutement.ViewModels.OffresViewModel;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 
@@ -28,6 +32,9 @@ public class OffresController {
 
     @Autowired
     private OffreService offreService;
+
+    @Autowired
+    private CandidatService candidatService;
 
     @RequestMapping("/")
     public String index(Model model) {
@@ -60,10 +67,25 @@ public class OffresController {
 
 
     @RequestMapping("/details/{id}")
-    public String offreDetails(@PathVariable("id") int id, Model model) {
+    public String offreDetails(@PathVariable("id") int id,
+                               Model model, Principal principal) {
 
+        Offre offre = offreService.find(id);
 
+//        if(principal != null) {
+//            Candidat candidat = candidatService.findByUsername(principal.getName());
+//            model.addAttribute("candidatOffres", candidat.getOffreCandidats());
+//        }
+
+        model.addAttribute("offre", offre);
+        model.addAttribute("type", OffreHelper.offreType(offre));
 
         return "offres/offre-details";
+    }
+
+    @RequestMapping("/postuler/{id}")
+    public String postuler(@PathVariable("id") int id) {
+
+        return "redirect:/offres/";
     }
 }

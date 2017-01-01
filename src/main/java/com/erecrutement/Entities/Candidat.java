@@ -36,7 +36,6 @@ public class Candidat extends User {
     @OneToMany(cascade = CascadeType.ALL)
     private Collection<Cv> cvs;
 
-
     public Candidat() {
         cvs = new ArrayList<>();
         offreCandidats = new ArrayList<OffreCandidat>();

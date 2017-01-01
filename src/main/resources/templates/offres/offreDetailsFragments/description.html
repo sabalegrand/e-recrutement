@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Description</title>
+</head>
+<body>
+
+<th:block th:fragment="description(title,description)">
+    <h5 th:text="${title}">
+        Title
+    </h5>
+    <div class="card-box">
+        <div th:utext="${description}">
+            Description
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>

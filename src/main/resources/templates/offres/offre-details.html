@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout">
 <head>
@@ -10,19 +11,68 @@
 
 <th:block layout:fragment="content">
     <div class="row">
-        <div class="col-sm-4">
-            <div class="card-box">
-                informations entreprise
-            </div>
+        <!-- INFOS GENERALES ENTREPRISE -->
+        <div class="col-sm-3 col-sm-offset-1">
+           <div th:replace="offres/offreDetailsFragments/infos-generales :: infos-generales">
+               infos generales
+           </div>
         </div>
-        <div class="col-sm-8">
-            <div class="card-box">
-                description offre
+        <!-- FIN INFOS GENERALES ENTREPRISE -->
+
+        <!-- OFFRE -->
+        <div class="col-sm-6">
+            <h2 class="" th:text="${offre.title}">
+                Offre title
+            </h2>
+            <!-- DESCRIPTION DE L'OFFRE-->
+            <div th:replace="offres/offreDetailsFragments/description ::
+                             description('Description de l\'offre',${offre.description})">
+                description
             </div>
+            <!-- FIN DESCRIPTION DE L'OFFRE -->
+
+            <!-- MISSIONS -->
+            <div th:replace="offres/offreDetailsFragments/description ::
+                             description('Missions',${offre.missions})">
+                missions
+            </div>
+            <!--  FIN MISSIONS -->
+
+            <!-- PROFILE -->
+            <div th:replace="offres/offreDetailsFragments/description ::
+                             description('Compétences requises',${offre.requis})">
+                profile
+            </div>
+            <!-- FIN PROFILE -->
+
+            <!--<div sec:authorize-url="/candidat/">-->
+                <form action="#" th:action="@{/offres/postuler/{id}(id=${offre.id})}" method="post">
+                    <input type="hidden" th:value="${offre.id}"/>
+                    <button type="submit" id="postulerButton" class="btn btn-danger">Postuler</button>
+                </form>
+            <!--</div>-->
         </div>
+        <!-- FIN OFFRE-->
     </div>
 </th:block>
 
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        (function () {
+            let postulerButton = $('#postulerButton');
+            let offreId = [[${offre.id}]];
+            $.post('/offres/postuler/' + offreId)
+
+        })();
+        /*]]>*/
+
+    </script>
+
+
+
+</th:block>
 
 </body>
 </html>
