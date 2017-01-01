@@ -151,4 +151,20 @@ public abstract class Offre {
     public void setEntreprise(Entreprise entreprise) {
         this.entreprise = entreprise;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Offre offre = (Offre) o;
+
+        return id == offre.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
 }

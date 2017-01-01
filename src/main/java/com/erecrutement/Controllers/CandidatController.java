@@ -230,8 +230,6 @@ public class CandidatController {
     public String candidatures(Model model, Principal principal) {
         Candidat candidat = candidatService.findByUsername(principal.getName());
 
-        System.out.println(candidat.getOffreCandidats().size());
-
         model.addAttribute("candidatures", candidat.getOffreCandidats());
 
         return "/candidat/candidatures";

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -75,10 +76,11 @@ public class OffresController {
 
         Offre offre = offreService.find(id);
 
-//        if(principal != null) {
-//            Candidat candidat = candidatService.findByUsername(principal.getName());
-//            model.addAttribute("candidatOffres", candidat.getOffreCandidats());
-//        }
+        if(principal != null) {
+            Candidat candidat = candidatService.findByUsername(principal.getName());
+            boolean hasApplied = OffreHelper.hasApplied(offre, candidat);
+            model.addAttribute("hasApplied", hasApplied);
+        }
 
         model.addAttribute("offre", offre);
         model.addAttribute("type", OffreHelper.offreType(offre));
@@ -86,6 +88,7 @@ public class OffresController {
         return "offres/offre-details";
     }
 
+    @Secured("ROLE_CANDIDAT")
     @RequestMapping("/postuler/{id}")
     public String postuler(@PathVariable("id") int id, Principal principal) {
         System.out.println("postuler");

@@ -1,9 +1,7 @@
 package com.erecrutement.Helpers;
 
-import com.erecrutement.Entities.Offres.Offre;
-import com.erecrutement.Entities.Offres.OffreCDD;
-import com.erecrutement.Entities.Offres.OffreCDI;
-import com.erecrutement.Entities.Offres.OffrePFE;
+import com.erecrutement.Entities.Candidat;
+import com.erecrutement.Entities.Offres.*;
 
 /**
  * Created by saba on 31/12/16.
@@ -25,5 +23,15 @@ public class OffreHelper {
         }
 
         return type;
+    }
+
+    public static boolean hasApplied (Offre offre, Candidat candidat) {
+
+        for(OffreCandidat offreCandidat: candidat.getOffreCandidats()) {
+            if (offreCandidat.getOffre().equals(offre)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
