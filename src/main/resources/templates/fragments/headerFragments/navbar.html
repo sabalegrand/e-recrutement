@@ -27,7 +27,7 @@
                     </li>
 
                     <!-- MENU OFFRES   -->
-                    <li class="has-submenu" sec:authorize-url="/offres">
+                    <li class="has-submenu" >
                         <a href="#"><i class="mdi mdi-view-dashboard"></i>Offres</a>
                         <ul class="submenu">
                             <li>
@@ -36,6 +36,12 @@
                         </ul>
                     </li>
                     <!-- FIN MENU OFFRES  -->
+
+                    <!-- CANDIDATURES CANDIDATS -->
+                    <li sec:authorize-url="/candidat/">
+                        <a th:href="@{/candidat/candidatures}">Mes candidatures</a>
+                    </li>
+                    <!-- FIN CANDIDATURES CANDIDATS -->
 
                     <!-- MENU OFFRES ( ENTREPRISE ) -->
                     <li class="has-submenu" sec:authorize-url="/entreprise">

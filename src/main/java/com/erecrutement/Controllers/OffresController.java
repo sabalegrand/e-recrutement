@@ -86,9 +86,9 @@ public class OffresController {
         return "offres/offre-details";
     }
 
-    @RolesAllowed(value = "ROLE_CANDIDAT")
     @RequestMapping("/postuler/{id}")
     public String postuler(@PathVariable("id") int id, Principal principal) {
+        System.out.println("postuler");
 
         Candidat candidat = candidatService.findByUsername(principal.getName());
         Offre offre = offreService.find(id);

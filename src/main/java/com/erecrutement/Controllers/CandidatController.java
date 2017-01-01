@@ -2,11 +2,11 @@ package com.erecrutement.Controllers;
 
 import ch.qos.logback.classic.gaffer.PropertyUtil;
 import com.erecrutement.Entities.*;
+import com.erecrutement.Entities.Offres.Offre;
+import com.erecrutement.Helpers.OffreHelper;
 import com.erecrutement.Repositories.CvRepository;
-import com.erecrutement.Services.CandidatService;
-import com.erecrutement.Services.ExperienceService;
-import com.erecrutement.Services.FormationService;
-import com.erecrutement.Services.UserService;
+import com.erecrutement.Repositories.OffreRepository;
+import com.erecrutement.Services.*;
 import com.erecrutement.ViewModels.ExperienceForm;
 import com.erecrutement.ViewModels.XeditableForm;
 import org.springframework.beans.PropertyAccessorUtils;
@@ -35,15 +35,14 @@ public class CandidatController {
 
     @Autowired
     private CandidatService candidatService;
-
     @Autowired
     private ExperienceService experienceService;
-
     @Autowired
     private FormationService formationService;
-
     @Autowired
     private CvRepository cvRepository;
+    @Autowired
+    private OffreService offreService;
 
     @RequestMapping("/")
     public String index() {
@@ -160,6 +159,7 @@ public class CandidatController {
         return "redirect:/candidat/profile";
     }
 
+
         // X-EDITABLE MODIFICATIONS
     @PostMapping("/profile/edit/username")
     public ResponseEntity<String> editUsername(@ModelAttribute XeditableForm form) {
@@ -225,6 +225,29 @@ public class CandidatController {
         return "redirect:/candidat/profile";
     }
 
+
+    @RequestMapping("/candidatures")
+    public String candidatures(Model model, Principal principal) {
+        Candidat candidat = candidatService.findByUsername(principal.getName());
+
+        System.out.println(candidat.getOffreCandidats().size());
+
+        model.addAttribute("candidatures", candidat.getOffreCandidats());
+
+        return "/candidat/candidatures";
+    }
+
+    @RequestMapping("/offre-details/{id}")
+    public String offreDetails(@PathVariable("id") int id,
+                               Model model) {
+
+        Offre offre = offreService.find(id);
+
+        model.addAttribute("offre", offre);
+        model.addAttribute("type", OffreHelper.offreType(offre));
+
+        return "/candidat/offre-details";
+    }
 
 
 //    @GetMapping("/uploadCv")

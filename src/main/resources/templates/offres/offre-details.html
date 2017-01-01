@@ -11,66 +11,56 @@
 
 <th:block layout:fragment="content">
     <div class="row">
-        <!-- INFOS GENERALES ENTREPRISE -->
-        <div class="col-sm-3 col-sm-offset-1">
-           <div th:replace="offres/offreDetailsFragments/infos-generales :: infos-generales">
-               infos generales
-           </div>
-        </div>
-        <!-- FIN INFOS GENERALES ENTREPRISE -->
 
-        <!-- OFFRE -->
-        <div class="col-sm-6">
-            <h2 class="" th:text="${offre.title}">
-                Offre title
-            </h2>
-            <!-- DESCRIPTION DE L'OFFRE-->
-            <div th:replace="offres/offreDetailsFragments/description ::
+        <div th:fragment="offre-details">
+            <!-- INFOS GENERALES ENTREPRISE -->
+            <div class="col-sm-3 col-sm-offset-1">
+                <div th:replace="offres/offreDetailsFragments/infos-generales :: infos-generales">
+                    infos generales
+                </div>
+            </div>
+            <!-- FIN INFOS GENERALES ENTREPRISE -->
+
+            <!-- OFFRE -->
+            <div class="col-sm-6">
+                <h2 class="" th:text="${offre.title}">
+                    Offre title
+                </h2>
+                <!-- DESCRIPTION DE L'OFFRE-->
+                <div th:replace="offres/offreDetailsFragments/description ::
                              description('Description de l\'offre',${offre.description})">
-                description
-            </div>
-            <!-- FIN DESCRIPTION DE L'OFFRE -->
+                    description
+                </div>
+                <!-- FIN DESCRIPTION DE L'OFFRE -->
 
-            <!-- MISSIONS -->
-            <div th:replace="offres/offreDetailsFragments/description ::
+                <!-- MISSIONS -->
+                <div th:replace="offres/offreDetailsFragments/description ::
                              description('Missions',${offre.missions})">
-                missions
-            </div>
-            <!--  FIN MISSIONS -->
+                    missions
+                </div>
+                <!--  FIN MISSIONS -->
 
-            <!-- PROFILE -->
-            <div th:replace="offres/offreDetailsFragments/description ::
+                <!-- PROFILE -->
+                <div th:replace="offres/offreDetailsFragments/description ::
                              description('Compétences requises',${offre.requis})">
-                profile
+                    profile
+                </div>
+                <!-- FIN PROFILE -->
             </div>
-            <!-- FIN PROFILE -->
-
-            <!--<div sec:authorize-url="/candidat/">-->
-                <form action="#" th:action="@{/offres/postuler/{id}(id=${offre.id})}" method="post">
-                    <input type="hidden" th:value="${offre.id}"/>
-                    <button type="submit" id="postulerButton" class="btn btn-danger">Postuler</button>
-                </form>
-            <!--</div>-->
+            <!-- FIN OFFRE-->
         </div>
-        <!-- FIN OFFRE-->
+
+        <div class="col-sm-6 col-sm-offset-4">
+            <form action="#" th:action="@{/offres/postuler/{id}(id=${offre.id})}" method="post">
+                <input type="hidden" th:value="${offre.id}"/>
+                <button type="submit" id="postulerButton" class="btn btn-danger">Postuler</button>
+            </form>
+        </div>
+
     </div>
 </th:block>
 
 <th:block layout:fragment="script">
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-
-        (function () {
-            let postulerButton = $('#postulerButton');
-            let offreId = [[${offre.id}]];
-            $.post('/offres/postuler/' + offreId)
-
-        })();
-        /*]]>*/
-
-    </script>
-
-
 
 </th:block>
 

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">>
+<head>
+    <meta charset="UTF-8" />
+    <title>Candidatures</title>
+    <link th:href="@{/plugins/datatables/jquery.dataTables.min.css}" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+
+<th:block layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box table-responsive">
+                <h4 class="m-t-0 header-title"><b>Offres</b></h4>
+
+                <table id="candidatures" class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Titre</th>
+                        <th>Entreprise</th>
+                        <th>Date de postulation</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="candidature : ${candidatures}">
+                        <td th:text="${candidature.offre.id}"></td>
+                        <td>
+                            <a th:href="@{/candidat/offre-details/{id}(id=${candidature.offre.id})}" th:text="${candidature.offre.title}"></a>
+                        </td>
+                        <td th:text="${candidature.offre.entreprise.companyName}"></td>
+                        <td th:text="${candidature.datePostul}"></td>
+                        <td th:text="${candidature.state}"></td>
+
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</th:block>
+
+<th:block layout:fragment="script">
+    <script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/plugins/datatables/dataTables.bootstrap.js}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#candidatures').dataTable();
+        });
+    </script>
+</th:block>
+
+</body>
+</html>

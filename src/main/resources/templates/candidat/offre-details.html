@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <title>Offre details</title>
 </head>
 <body>
+
+<th:block layout:fragment="content">
+    <div th:replace="/offres/offre-details :: offre-details">
+        offre details
+    </div>
+</th:block>
 
 </body>
 </html>
