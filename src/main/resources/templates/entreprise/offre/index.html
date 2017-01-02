@@ -15,82 +15,74 @@
 
     <div class="row">
 
-        <h3 th:text="${#strings.capitalize(offre.title)}">
-            Titre de l'offre
-        </h3>
+        <!-- OFFRE -->
+        <div class="col-md-6">
+            <h3 th:text="${#strings.capitalize(offre.title)}">
+                Titre de l'offre
+            </h3>
 
-        <!-- INFOS GENERALES -->
-        <div class="col-md-8 center-page">
-            <div class="card-box">
-                <h4 style="color: #188ae2 !important">Informations générales</h4>
-
-                <div>
-                    <strong>Date de publication:</strong>
-                    <span th:text="${offre.datePublished}"></span>
-                </div>
-
-                <div>
-                    <strong>Lieu:</strong>
-                    <div th:replace="components/x-editable/text ::
-                     text('place','m-l-15','Lieu','/entreprise/offre/edit/place',${offre.id},${offre.place})">
-                        Lieu
-                    </div>
-                </div>
-
-                <div th:if="${offre.class.name == 'com.erecrutement.Entities.Offres.OffreCDD' || offre.class.name =='com.erecrutement.Entities.Offres.OffrePFE'}">
-                    <strong>Durée:</strong>
-                    <div th:replace="components/x-editable/text ::
-                     text('duration','m-l-15','Durée','/entreprise/offre/edit/duration',${offre.id},${offre.duration})">
-                        Duration
-                    </div>
-                    mois
-                </div>
-
-                <div th:if="${offre.remuneration} != 0">
-                    <strong>Rémunération:</strong>
-                    <div th:replace="components/x-editable/text ::
-                     text('remuneration','m-l-15','Durée','/entreprise/offre/edit/remuneration',${offre.id},${offre.remuneration})">
-                        Duration
-                    </div>
-                    DHs/mois
-                </div>
-
-
-                <div th:if="${offre.class.name == 'com.erecrutement.Entities.Offres.OffreCDD' || offre.class.name == 'com.erecrutement.Entities.Offres.OffreCDI'}">
-                    <strong>Poste:</strong>
-                    <div th:replace="components/x-editable/text ::
-                     text('poste','m-l-15','Durée','/entreprise/offre/edit/poste',${offre.id},${offre.poste})">
-                        Poste
-                    </div>
-                </div>
-                <div th:if="${offre.class.name == 'com.erecrutement.Entities.Offres.OffrePFE'}">
-                    <strong>Pré-embauche:</strong>
-                    <span th:text="${offre.preembauche}"></span>
+            <!-- INFOS GENERALES -->
+            <div class="center-page">
+                <div th:replace="entreprise/offre/indexFragments/infos-generales ::
+                          infos-generales">
+                    Infos generales
                 </div>
             </div>
-        </div>
-        <!-- FIN INFOS GENERALES -->
+            <!-- FIN INFOS GENERALES -->
 
-        <!-- DESCRIPTION OFFRE -->
-        <div th:replace="entreprise/offre/indexFragments/details-portlet ::
+            <!-- DESCRIPTION OFFRE -->
+            <div class="center-page">
+                <div th:replace="entreprise/offre/indexFragments/details-portlet ::
                           details-portlet('descriptionDiv', 'Déscription de l\'offre', ${offre.description})">
-            Description offre
-        </div>
-        <!-- FIN DESCRIPTION OFFRE-->
+                    Description offre
+                </div>
+            </div>
+            <!-- FIN DESCRIPTION OFFRE-->
 
-        <!-- MISSIONS -->
-        <div th:replace="entreprise/offre/indexFragments/details-portlet ::
+            <!-- MISSIONS -->
+            <div class="center-page">
+                <div th:replace="entreprise/offre/indexFragments/details-portlet ::
                           details-portlet('missionsDiv', 'Missions', ${offre.missions})">
-            Missions
-        </div>
-        <!-- FIN MISSIONS -->
+                    Missions
+                </div>
+            </div>
+            <!-- FIN MISSIONS -->
 
-        <!-- PROFILE -->
-        <div th:replace="entreprise/offre/indexFragments/details-portlet ::
+            <!-- PROFILE -->
+            <div class="center-page">
+                <div th:replace="entreprise/offre/indexFragments/details-portlet ::
                           details-portlet('profileDiv', 'Profile recherché', ${offre.requis})">
-            Profile
+                    Profile
+                </div>
+            </div>
+            <!-- PROFILE -->
         </div>
-        <!-- PROFILE -->
+        <!-- FIN OFFRE -->
+
+        <!-- CANDIDATS -->
+        <div class="col-md-6 m-t-40">
+            <div class="card-box">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Tel</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr th:each="candidat : ${candidats}">
+                        <td>
+                            <a th:href="@{/profile/candidat/{id}(id=${candidat.id})" th:text="${#strings.capitalize(candidat.firstName) + ' ' + #strings.capitalize(candidat.lastName)}"></a>
+                        </td>
+                        <td th:text="${candidat.personalPhoneNumber}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- FIN CANDIDATS -->
+
     </div>
 </th:block>
 
@@ -129,8 +121,10 @@
         function initSummernote(containerId, postObject) {
             const container = $('#' + containerId);
             const modifierButton = container.parent().parent().parent().find('.modifier-description');
-            const sauvegarderButton = container.parent().parent().parent().find('.sauvegarder-description');;
-            const annulerbutton = container.parent().parent().parent().find('.annuler-description');;
+            const sauvegarderButton = container.parent().parent().parent().find('.sauvegarder-description');
+            ;
+            const annulerbutton = container.parent().parent().parent().find('.annuler-description');
+            ;
             let oldDescription, newDescription, offreId;
 
             sauvegarderButton.hide();
@@ -151,7 +145,7 @@
                 newDescription = container.summernote('code');
                 container.summernote('destroy');
 
-                if(oldDescription !== newDescription) {
+                if (oldDescription !== newDescription) {
                     $.post(postObject.url, {
                         id: postObject.id,
                         data: newDescription

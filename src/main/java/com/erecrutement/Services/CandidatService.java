@@ -20,6 +20,11 @@ public class CandidatService implements ICandidatService{
     }
 
     @Override
+    public Candidat find(int id) {
+        return candidatRepository.findOne(id);
+    }
+
+    @Override
     public Candidat save(Candidat candidat) {
         return candidatRepository.save(candidat);
     }
@@ -30,8 +35,8 @@ public class CandidatService implements ICandidatService{
     }
 
     @Override
-    public void delete(String username) {
-        candidatRepository.delete(username);
+    public void delete(int id) {
+        candidatRepository.delete(id);
     }
 
     @Override

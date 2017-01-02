@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Profile candidat</title>
+</head>
+<body>
+
+<th:block layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div>
+                <div class="row">
+                    <div class="col-md-4 col-lg-3 ">
+                        <div class="text-center card-box">
+                            <div class="member-card">
+                                <div class="thumb-xl member-thumb m-b-10 center-block">
+                                    <img th:src="@{/images/users/default_profile.jpg}" class="img-circle img-thumbnail"
+                                         alt="profile-image"/>
+                                </div>
+
+                                <hr/>
+
+                                <div class="text-left">
+                                    <div>
+                                        <strong>Full Name :</strong>
+                                        <span th:text="${#strings.capitalize(candidat.firstName) + ' ' + #strings.capitalize(candidat.lastName)}"></span>
+                                    </div>
+                                    <div>
+                                        <strong>Tel :</strong>
+                                        <span th:text="${candidat.personalPhoneNumber}"></span>
+                                    </div>
+                                    <div>
+                                        <strong>Email :</strong>
+                                        <span th:text="${candidat.username}"></span>
+                                    </div>
+                                    <!--<p class="text-muted font-13">-->
+                                    <!--<strong>Pays :</strong>-->
+                                    <!--</p>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                    <div class="col-md-8 col-lg-9">
+
+                        <!-- DEBUT COMPETENCES -->
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card-box">
+                                <span th:if="${localCv.competences.size() == 0}">
+                                    Aucune information disponible
+                                </span>
+                            </div>
+                        </div>
+                        <!-- FIN COMPETENCES -->
+
+                        <!-- DEBUT EXPERIENCES -->
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card-box">
+                                <span th:if="${localCv.experiences.size() == 0}">
+                                    Aucune information disponible
+                                </span>
+                                <!-- LISTE LES EXPERIENCES -->
+                                <th:block th:each="experience : ${localCv.experiences}">
+                                    <div th:replace="candidat/profileFragments/experiencesFragments/experience ::
+                                         experience(${experience.id},${experience.titre}, ${experience.lieu},
+                                         ${experience.debut}, ${experience.fin},
+                                         ${experience.description})"></div>
+                                </th:block>
+                                <!-- FIN LISTE EXPERIENCES -->
+                            </div>
+                        </div>
+                        <!-- FIN EXPERIENCES -->
+
+                        <!-- DEBUT FORMATIONS -->
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card-box">
+                                <span th:if="${localCv.formations.size() == 0}">
+                                    Aucune information disponible
+                                </span>
+                                <!-- LISTE LES FORMATIONS -->
+                                <th:block th:each="formation : ${localCv.formations}">
+                                    <div th:replace="candidat/profileFragments/experiencesFragments/experience ::
+                                         experience(${formation.id},${formation.formation}, ${formation.lieu},
+                                         ${formation.debut}, ${formation.fin},
+                                         ${formation.description})"></div>
+                                </th:block>
+                                <!-- FIN LISTE FORMATIONS -->
+                            </div>
+                        </div>
+                        <!-- FIN FORMATIONS -->
+                    </div>
+                    <!-- end col -->
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+<th:block layout:fragment="script">
+    <script>
+        (function () {
+            $(".portlet-widgets").hide();
+            $(".portlet").removeClass("portlet").addClass("card-box");
+        })();
+    </script>
+</th:block>
+
+</body>
+</html>

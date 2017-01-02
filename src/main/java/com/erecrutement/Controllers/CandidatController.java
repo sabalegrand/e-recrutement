@@ -57,7 +57,8 @@ public class CandidatController {
     @RequestMapping("/deleteAccount")
     public String deleteAccount (RedirectAttributes redirectAttributes, Principal principal) {
             //test
-        candidatService.delete(principal.getName());
+        Candidat candidat = candidatService.findByUsername(principal.getName());
+        candidatService.delete(candidat.getId());
 
         redirectAttributes.addFlashAttribute("accountDeleted", "Votre compte a bien été supprimer.");
 
@@ -79,8 +80,6 @@ public class CandidatController {
 
         model.addAttribute("candidat", candidat);
         model.addAttribute("localCv", localCv);
-//        model.addAttribute("experiences", experiences);
-//        model.addAttribute("formations", formations);
 
         return "candidat/profile";
     }

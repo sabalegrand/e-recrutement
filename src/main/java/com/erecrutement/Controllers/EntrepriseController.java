@@ -1,5 +1,6 @@
 package com.erecrutement.Controllers;
 
+import com.erecrutement.Entities.Candidat;
 import com.erecrutement.Entities.Entreprise;
 import com.erecrutement.Entities.Offres.Offre;
 import com.erecrutement.Entities.Offres.OffreCDD;
@@ -16,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -122,8 +124,12 @@ public class EntrepriseController {
     public String offreDetails(@PathVariable("id") int idOffre, Model model) {
 
         Offre offre = offreService.find(idOffre);
+        List<Candidat> candidats = new ArrayList<>();
+
+        offre.getOffreCandidats().forEach(offreCandidat -> candidats.add(offreCandidat.getCandidat()));
 
         model.addAttribute("offre", offre);
+        model.addAttribute("candidats", candidats);
 
         return "/entreprise/offre/index";
     }
@@ -216,5 +222,7 @@ public class EntrepriseController {
 
         return ResponseEntity.ok("ok");
     }
+
+
 
 }

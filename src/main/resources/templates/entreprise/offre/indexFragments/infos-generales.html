@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">>
+<head>
+    <meta charset="UTF-8" />
+    <title>Infos generales</title>
+</head>
+<body>
+
+<th:block th:fragment="infos-generales">
+    <div class="card-box">
+        <h4 style="color: #188ae2 !important">Informations générales</h4>
+
+        <div>
+            <strong>Date de publication:</strong>
+            <span th:text="${offre.datePublished}"></span>
+        </div>
+
+        <div>
+            <strong>Lieu:</strong>
+            <div th:replace="components/x-editable/text ::
+                     text('place','m-l-15','Lieu','/entreprise/offre/edit/place',${offre.id},${offre.place})">
+                Lieu
+            </div>
+        </div>
+
+        <div th:if="${offre.class.name == 'com.erecrutement.Entities.Offres.OffreCDD' || offre.class.name =='com.erecrutement.Entities.Offres.OffrePFE'}">
+            <strong>Durée:</strong>
+            <div th:replace="components/x-editable/text ::
+                     text('duration','m-l-15','Durée','/entreprise/offre/edit/duration',${offre.id},${offre.duration})">
+                Duration
+            </div>
+            mois
+        </div>
+
+        <div th:if="${offre.remuneration} != 0">
+            <strong>Rémunération:</strong>
+            <div th:replace="components/x-editable/text ::
+                     text('remuneration','m-l-15','Durée','/entreprise/offre/edit/remuneration',${offre.id},${offre.remuneration})">
+                Duration
+            </div>
+            DHs/mois
+        </div>
+
+
+        <div th:if="${offre.class.name == 'com.erecrutement.Entities.Offres.OffreCDD' || offre.class.name == 'com.erecrutement.Entities.Offres.OffreCDI'}">
+            <strong>Poste:</strong>
+            <div th:replace="components/x-editable/text ::
+                     text('poste','m-l-15','Durée','/entreprise/offre/edit/poste',${offre.id},${offre.poste})">
+                Poste
+            </div>
+        </div>
+        <div th:if="${offre.class.name == 'com.erecrutement.Entities.Offres.OffrePFE'}">
+            <strong>Pré-embauche:</strong>
+            <span th:text="${offre.preembauche}"></span>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>
