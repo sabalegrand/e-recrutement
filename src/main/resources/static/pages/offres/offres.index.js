@@ -91,4 +91,6 @@
     offresLoader.load();
     offresLoader.infiniteScroll();
 
+
+
 })($(window), $('#offresDiv'), $('#loading'));

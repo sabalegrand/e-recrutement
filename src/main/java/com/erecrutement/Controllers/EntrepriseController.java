@@ -65,12 +65,15 @@ public class EntrepriseController {
         String requis = form.getRequis().replaceAll("\\r?\\n", "<br />");
 
         switch (type) {
-            case "pfe":
+            case "PFE":
                 OffrePFE offrePFE = new OffrePFE();
 
                 offrePFE.setDatePublished(new Date());
                 offrePFE.setTitle(form.getTitle());
                 offrePFE.setPlace(form.getPlace());
+                offrePFE.setDomain(form.getSecteur());
+                offrePFE.setNiveau(form.getNiveau());
+                offrePFE.setMetier(form.getMetier());
                 offrePFE.setRemuneration(remuneration);
                 offrePFE.setDescription(description);
                 offrePFE.setMissions(missions);
@@ -82,12 +85,15 @@ public class EntrepriseController {
 
                 offreService.save(offrePFE);
                 break;
-            case "cdd":
+            case "CDD":
                 OffreCDD offreCDD = new OffreCDD();
 
                 offreCDD.setDatePublished(new Date());
                 offreCDD.setTitle(form.getTitle());
                 offreCDD.setPlace(form.getPlace());
+                offreCDD.setDomain(form.getSecteur());
+                offreCDD.setNiveau(form.getNiveau());
+                offreCDD.setMetier(form.getMetier());
                 offreCDD.setRemuneration(remuneration);
                 offreCDD.setDescription(description);
                 offreCDD.setMissions(missions);
@@ -99,12 +105,15 @@ public class EntrepriseController {
 
                 offreService.save(offreCDD);
                 break;
-            case "cdi":
+            case "CDI":
                 OffreCDI offreCDI = new OffreCDI();
 
                 offreCDI.setDatePublished(new Date());
                 offreCDI.setTitle(form.getTitle());
                 offreCDI.setPlace(form.getPlace());
+                offreCDI.setDomain(form.getSecteur());
+                offreCDI.setNiveau(form.getNiveau());
+                offreCDI.setMetier(form.getMetier());
                 offreCDI.setRemuneration(remuneration);
                 offreCDI.setDescription(description);
                 offreCDI.setMissions(missions);

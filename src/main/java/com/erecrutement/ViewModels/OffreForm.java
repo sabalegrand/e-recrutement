@@ -25,13 +25,17 @@ public class OffreForm {
 
     private String requis;
 
-    private String domain;
+    private String secteur;
 
     private String duration;
 
     private String poste;
 
     private boolean preembauche;
+
+    private String metier;
+
+    private String niveau;
 
     private String type;
 
@@ -84,12 +88,28 @@ public class OffreForm {
         this.description = description;
     }
 
-    public String getDomain() {
-        return domain;
+    public String getSecteur() {
+        return secteur;
     }
 
-    public void setDomain(String domain) {
-        this.domain = domain;
+    public void setSecteur(String secteur) {
+        this.secteur = secteur;
+    }
+
+    public String getMetier() {
+        return metier;
+    }
+
+    public void setMetier(String metier) {
+        this.metier = metier;
+    }
+
+    public String getNiveau() {
+        return niveau;
+    }
+
+    public void setNiveau(String niveau) {
+        this.niveau = niveau;
     }
 
     public String getMissions() {
