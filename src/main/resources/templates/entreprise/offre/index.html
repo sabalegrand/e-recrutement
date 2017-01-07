@@ -73,7 +73,7 @@
                     <tbody>
                     <tr th:each="candidat : ${candidats}">
                         <td>
-                            <a th:href="@{/profile/candidat/{id}(id=${candidat.id})" th:text="${#strings.capitalize(candidat.firstName) + ' ' + #strings.capitalize(candidat.lastName)}"></a>
+                            <a th:href="@{/profile/candidat/{id}(id=${candidat.id})}" th:text="${#strings.capitalize(candidat.firstName) + ' ' + #strings.capitalize(candidat.lastName)}"></a>
                         </td>
                         <td th:text="${candidat.personalPhoneNumber}"></td>
                     </tr>
