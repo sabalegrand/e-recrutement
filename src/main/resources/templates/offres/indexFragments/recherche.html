@@ -10,14 +10,55 @@
 
 <th:block th:fragment="recherche">
     <form action="#">
-        <div class="input-group">
+        <div class="row">
+            <div class="input-group">
          <span class="input-group-btn">
              <button type="button" class="btn waves-effect waves-light btn-primary">
                  <i class="fa fa-search"></i></button>
          </span>
 
-            <input id="example-input1-group2" name="example-input1-group2" class="form-control" placeholder="Search"
-                   type="text"/>
+                <input id="motcle" name="motcle" class="form-control" placeholder="Search"
+                       type="text"/>
+            </div>
+        </div>
+        <div class="row p-t-10">
+            <div class="col-md-6">
+                <select class="form-control" name="type" id="type">
+                    <option value="" selected="">Type Contrat</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <select class="form-control" name="secteur" id="secteur">
+                    <option value="" selected="">Secteur d'activité</option>
+                </select>
+            </div>
+        </div>
+        <div class="row p-t-10"><a href="#" id="advancedSearchLink">Recherche avancée </a>
+        </div>
+        <div id="advancedSearch" class="row p-t-10">
+            <div class="row p-t-10">
+                <div class="col-md-6">
+                    <select class="form-control" name="metier" id="metier">
+                        <option value="" selected="">Metier</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-control" name="lieu" id="lieu">
+                        <option value="" selected="">Lieu</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row p-t-10">
+                <div class="col-md-6">
+                    <select class="form-control" name="niveau" id="niveau">
+                        <option value="" selected="">Niveau d'etudes</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <input type="date"/>
+                </div>
+            </div>
         </div>
     </form>
 </th:block>
