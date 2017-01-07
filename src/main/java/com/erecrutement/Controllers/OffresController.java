@@ -8,6 +8,7 @@ import com.erecrutement.Services.CandidatService;
 import com.erecrutement.Services.OffreService;
 import com.erecrutement.ViewModels.OffreViewModel;
 import com.erecrutement.ViewModels.OffresViewModel;
+import com.erecrutement.ViewModels.RechercheViewModel;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,13 +17,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -76,7 +75,7 @@ public class OffresController {
 
         Offre offre = offreService.find(id);
 
-        if(principal != null) {
+        if (principal != null) {
             Candidat candidat = candidatService.findByUsername(principal.getName());
             boolean hasApplied = OffreHelper.hasApplied(offre, candidat);
             model.addAttribute("hasApplied", hasApplied);
@@ -106,5 +105,69 @@ public class OffresController {
         candidatService.update(candidat);
 
         return "redirect:/offres/";
+    }
+
+    @PostMapping("/recherche")
+    public String rechercher(@ModelAttribute RechercheViewModel filters, Model model) {
+        List<Offre> offres = offreService.findAll();
+       List<Offre> filteredOffres = filter(offres,filters);
+        model.addAttribute("offres", filteredOffres);
+
+        System.out.println(filteredOffres.size());
+        return "offres/index";
+    }
+
+    private List<Offre> filter(List<Offre> offres, RechercheViewModel filters) {
+        List<Offre> filtredOffres;
+        filtredOffres = filterSecteur(offres, filters.getSecteur());
+        filtredOffres = filterLieu(filtredOffres,filters.getLieu());
+        return filtredOffres;
+    }
+
+    private List<Offre> filterSecteur(List<Offre> offres, String secteur) {
+        List<Offre> filtredOffres = new ArrayList<>();
+        if (!secteur.isEmpty()) {
+            for (Offre offre : offres) {
+                if (offre.getDomain().equals(secteur))
+                    filtredOffres.add(offre);
+            }
+            return filtredOffres;
+        }
+        return offres;
+    }
+
+    private List<Offre> filterType(List<Offre> offres, String type) {
+        List<Offre> filtredOffres = new ArrayList<>();
+        if (!type.isEmpty()) {
+            for (Offre offre : offres) {
+                if (OffreHelper.offreType(offre).equals(type)) {
+                    filtredOffres.add(offre);
+                }
+            }
+            return filtredOffres;
+        }
+        return offres;
+    }
+
+    private List<Offre> filterMetier(List<Offre> offres, String metier) {
+        List<Offre> filtredOffres = new ArrayList<>();
+        if (!metier.isEmpty()) {
+
+            return filtredOffres;
+        }
+        return offres;
+    }
+
+    private List<Offre> filterLieu(List<Offre> offres, String lieu) {
+        List<Offre> filtredOffres = new ArrayList<>();
+        if (!lieu.isEmpty()) {
+            for (Offre offre : offres) {
+                if (offre.getPlace().equals(lieu)) {
+                    filtredOffres.add(offre);
+                }
+            }
+            return filtredOffres;
+        }
+        return offres;
     }
 }

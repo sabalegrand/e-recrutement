@@ -9,11 +9,11 @@
 <body>
 
 <th:block th:fragment="recherche">
-    <form action="#">
+    <form action="#" th:action="@{/offres/recherche}" method="post">
         <div class="row">
             <div class="input-group">
          <span class="input-group-btn">
-             <button type="button" class="btn waves-effect waves-light btn-primary">
+             <button type="submit" class="btn waves-effect waves-light btn-primary">
                  <i class="fa fa-search"></i></button>
          </span>
 

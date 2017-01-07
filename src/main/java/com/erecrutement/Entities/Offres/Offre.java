@@ -46,6 +46,12 @@ public abstract class Offre {
     @Column(name = "domain")
     private String domain;
 
+    @Column(name = "metier")
+    private String metier;
+
+    @Column(name = "niveau")
+    private String niveau;
+
     @ManyToOne
     private Entreprise entreprise;
 
@@ -150,6 +156,22 @@ public abstract class Offre {
 
     public void setEntreprise(Entreprise entreprise) {
         this.entreprise = entreprise;
+    }
+
+    public String getMetier() {
+        return metier;
+    }
+
+    public void setMetier(String metier) {
+        this.metier = metier;
+    }
+
+    public String getNiveau() {
+        return niveau;
+    }
+
+    public void setNiveau(String niveau) {
+        this.niveau = niveau;
     }
 
     @Override
