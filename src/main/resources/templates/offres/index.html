@@ -5,6 +5,8 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Offres</title>
+    <link th:href="@{/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css}" rel="stylesheet" type="text/css"/>
+
 </head>
 <body>
 
@@ -14,7 +16,7 @@
         <div class="col-md-4">
             <div class="card-box recherche">
                 <div th:replace="offres/indexFragments/recherche :: recherche">
-                    RECHERCHE NORMALEMENT
+                    RECHERCHE
                 </div>
             </div>
         </div>
@@ -34,6 +36,7 @@
 </th:block>
 
 <th:block layout:fragment="script">
+    <script th:src="@{/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js}"></script>
     <!-- SCRIPT AFFICHAGE OFFRES -->
 
     <script th:src="@{/plugins/secteur.js}"></script>

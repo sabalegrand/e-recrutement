@@ -21,10 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by saba on 28/12/16.
@@ -110,7 +107,7 @@ public class OffresController {
     @PostMapping("/recherche")
     public String rechercher(@ModelAttribute RechercheViewModel filters, Model model) {
         List<Offre> offres = offreService.findAll();
-       List<Offre> filteredOffres = filter(offres,filters);
+        List<Offre> filteredOffres = filter(offres, filters);
         model.addAttribute("offres", filteredOffres);
 
         System.out.println(filteredOffres.size());
@@ -119,9 +116,28 @@ public class OffresController {
 
     private List<Offre> filter(List<Offre> offres, RechercheViewModel filters) {
         List<Offre> filtredOffres;
-        filtredOffres = filterSecteur(offres, filters.getSecteur());
-        filtredOffres = filterLieu(filtredOffres,filters.getLieu());
+        filtredOffres = filterMotsCles(offres, filters.getMotcle());
+        filtredOffres = filterSecteur(filtredOffres, filters.getSecteur());
+        filtredOffres = filterLieu(filtredOffres, filters.getLieu());
         return filtredOffres;
+    }
+
+    private List<Offre> filterMotsCles(List<Offre> offres, String motsCles) {
+        List<Offre> filteredOffres = new ArrayList<>();
+
+        if(!motsCles.isEmpty()) {
+            List<String> keyWordsArray = Arrays.asList(motsCles.split("\\s*,\\s*"));
+
+            for(Offre offre: offres) {
+                for(String keyWord: keyWordsArray) {
+                    if(containsKeyWord(offre.getTitle(), keyWord)) {
+                        filteredOffres.add(offre);
+                    }
+                }
+            }
+            return filteredOffres;
+        }
+        return offres;
     }
 
     private List<Offre> filterSecteur(List<Offre> offres, String secteur) {
@@ -169,5 +185,9 @@ public class OffresController {
             return filtredOffres;
         }
         return offres;
+    }
+
+    public boolean containsKeyWord(String str, String keyWord) {
+        return str.matches(".*" + keyWord + ".*");
     }
 }
