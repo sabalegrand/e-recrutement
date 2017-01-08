@@ -21,14 +21,17 @@
             </div>
         </div>
         <div class="col-xs-8">
-            <div id="offresDiv">
-            </div>
+            <th:block th:each="offre: ${offres}">
+                <div class="row" th:include="offres/indexFragments/offre :: offre(${offre})"></div>
+            </th:block>
+            <!--<div id="offresDiv">-->
+            <!--</div>-->
             <!-- TODO: centrer spinner -->
-            <div class="row">
-                <div id="loading" class="center-page">
-                    <img th:src="@{/images/loading.gif}" alt="Loading…"/>
-                </div>
-            </div>
+            <!--<div class="row">-->
+                <!--<div id="loading" class="center-page">-->
+                    <!--<img th:src="@{/images/loading.gif}" alt="Loading…"/>-->
+                <!--</div>-->
+            <!--</div>-->
 
         </div>
     </div>
@@ -44,7 +47,8 @@
     <script th:src="@{/plugins/niveau.js}"></script>
     <script th:src="@{/plugins/metier.js}"></script>
     <script th:src="@{/pages/offres/offre-form.js}"></script>
-    <script th:src="@{/pages/offres/offres.index.js}"></script>
+
+    <!--<script th:src="@{/pages/offres/offres.index.js}"></script>-->
 
 
 

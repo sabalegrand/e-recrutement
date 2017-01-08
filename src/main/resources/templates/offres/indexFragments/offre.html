@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <title>Offre</title>
 </head>
 <body>
+
+<th:block th:fragment="offre(offre)">
+    <div class="card-box">
+        <div class="row">
+            <div class="col-xs-9">
+                <h3>
+                    <a th:href="@{/offres/details/{id}(id=${offre.id})}" th:text="${offre.title}"></a>
+                </h3>
+                <h5 th:text="${'Publié le ' + offre.datePublished}">Publié le....</h5>
+            </div>
+            <div class="col-xs-3">
+                IMAGE ENTREPRISE
+            </div>
+        </div>
+    </div>
+</th:block>
 
 </body>
 </html>
