@@ -39,6 +39,11 @@ public class TestController {
     @Autowired
     private CandidatService candidatService;
 
+    @RequestMapping("/webrtc")
+    public String webRTC() {
+        return "test/webrtc";
+    }
+
     @RequestMapping("/")
     @ResponseBody
     public Object index() {
