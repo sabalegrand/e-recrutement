@@ -2,12 +2,10 @@ package com.erecrutement.Controllers;
 
 import com.erecrutement.Entities.Candidat;
 import com.erecrutement.Entities.Entreprise;
-import com.erecrutement.Entities.Offres.Offre;
-import com.erecrutement.Entities.Offres.OffreCDD;
-import com.erecrutement.Entities.Offres.OffreCDI;
-import com.erecrutement.Entities.Offres.OffrePFE;
+import com.erecrutement.Entities.Offres.*;
 import com.erecrutement.Services.OffreService;
 import com.erecrutement.Services.UserService;
+import com.erecrutement.ViewModels.EntrepriseOffreDetailsViewModel;
 import com.erecrutement.ViewModels.OffreForm;
 import com.erecrutement.ViewModels.XeditableForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -133,12 +131,25 @@ public class EntrepriseController {
     public String offreDetails(@PathVariable("id") int idOffre, Model model) {
 
         Offre offre = offreService.find(idOffre);
-        List<Candidat> candidats = new ArrayList<>();
+        List<EntrepriseOffreDetailsViewModel> data = new ArrayList<>();
 
-        offre.getOffreCandidats().forEach(offreCandidat -> candidats.add(offreCandidat.getCandidat()));
+        for(OffreCandidat offreCandidat: offre.getOffreCandidats()) {
+            Candidat candidat = offreCandidat.getCandidat();
+            EntrepriseOffreDetailsViewModel temp = new EntrepriseOffreDetailsViewModel();
+
+            temp.setId(candidat.getId());
+            temp.setOffreCandidatId(offreCandidat.getId());
+            temp.setFirstName(candidat.getFirstName());
+            temp.setLastName(candidat.getLastName());
+            temp.setPersonalPhoneNumber(candidat.getPersonalPhoneNumber());
+            temp.setDatePostul(offreCandidat.getDatePostul());
+            temp.setState(offreCandidat.getState());
+
+            data.add(temp);
+        }
 
         model.addAttribute("offre", offre);
-        model.addAttribute("candidats", candidats);
+        model.addAttribute("candidats", data);
 
         return "/entreprise/offre/index";
     }
@@ -198,8 +209,6 @@ public class EntrepriseController {
 
         return ResponseEntity.ok("ok");
     }
-
-
     // SUMMERNOTE
     @PostMapping("/offre/edit/description")
     public ResponseEntity<String> editDescription(@RequestParam("id") String id,
@@ -232,6 +241,21 @@ public class EntrepriseController {
         return ResponseEntity.ok("ok");
     }
 
+    @PostMapping("/offre/{offreId}/candidat/{candidatId}/setStatus/{status}")
+    public ResponseEntity<String> setStatus(@PathVariable("offreId") int offreId,
+                          @PathVariable("candidatId") int candidatId,
+                          @PathVariable("status") String status) {
 
+        Offre offre = offreService.find(offreId);
+
+        for(OffreCandidat oc: offre.getOffreCandidats()) {
+            if(oc.getCandidat().getId() == candidatId) {
+                oc.setState(status);
+                break;
+            }
+        }
+        offreService.update(offre);
+        return ResponseEntity.ok("ok");
+    }
 
 }
