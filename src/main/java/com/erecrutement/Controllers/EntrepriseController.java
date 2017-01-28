@@ -1,7 +1,7 @@
 package com.erecrutement.Controllers;
 
-import com.erecrutement.Entities.Candidat;
-import com.erecrutement.Entities.Entreprise;
+import com.erecrutement.Entities.User.Candidat;
+import com.erecrutement.Entities.User.Entreprise;
 import com.erecrutement.Entities.Offres.*;
 import com.erecrutement.Services.OffreService;
 import com.erecrutement.Services.UserService;
@@ -141,6 +141,7 @@ public class EntrepriseController {
             temp.setOffreCandidatId(offreCandidat.getId());
             temp.setFirstName(candidat.getFirstName());
             temp.setLastName(candidat.getLastName());
+            temp.setUsername(candidat.getUsername());
             temp.setPersonalPhoneNumber(candidat.getPersonalPhoneNumber());
             temp.setDatePostul(offreCandidat.getDatePostul());
             temp.setState(offreCandidat.getState());

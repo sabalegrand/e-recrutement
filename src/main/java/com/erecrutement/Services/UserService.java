@@ -1,6 +1,6 @@
 package com.erecrutement.Services;
 
-import com.erecrutement.Entities.User;
+import com.erecrutement.Entities.User.User;
 import com.erecrutement.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

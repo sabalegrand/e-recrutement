@@ -1,27 +1,21 @@
 package com.erecrutement.Controllers;
 
-import ch.qos.logback.classic.gaffer.PropertyUtil;
 import com.erecrutement.Entities.*;
 import com.erecrutement.Entities.Offres.Offre;
+import com.erecrutement.Entities.User.Candidat;
 import com.erecrutement.Helpers.OffreHelper;
 import com.erecrutement.Repositories.CvRepository;
-import com.erecrutement.Repositories.OffreRepository;
 import com.erecrutement.Services.*;
 import com.erecrutement.ViewModels.ExperienceForm;
 import com.erecrutement.ViewModels.XeditableForm;
-import org.springframework.beans.PropertyAccessorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.security.Principal;
 import java.text.ParseException;

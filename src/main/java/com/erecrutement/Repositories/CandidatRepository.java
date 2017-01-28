@@ -1,9 +1,7 @@
 package com.erecrutement.Repositories;
 
-import com.erecrutement.Entities.Candidat;
+import com.erecrutement.Entities.User.Candidat;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 /**

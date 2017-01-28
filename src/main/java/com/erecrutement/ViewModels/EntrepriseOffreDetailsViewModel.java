@@ -15,9 +15,17 @@ public class EntrepriseOffreDetailsViewModel {
     private String firstName;
     private String lastName;
     private String personalPhoneNumber;
+    private String username;
     private String state;
     private Date datePostul;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public int getOffreCandidatId() {
         return offreCandidatId;

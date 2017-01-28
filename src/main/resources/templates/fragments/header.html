@@ -24,8 +24,8 @@
 
             <div class="menu-extras">
 
-                <ul class="nav navbar-nav navbar-right pull-right ">
-                    <th:block sec:authorize="isAnonymous()">
+                <th:block sec:authorize="isAnonymous()">
+                    <ul class="nav navbar-nav navbar-right pull-right ">
                         <li class="navbar-c-items">
                             <a th:href="@{/login}">Login</a>
                         </li>
@@ -35,11 +35,16 @@
                         <li class="navbar-c-items">
                             <a th:href="@{/signup/entreprise}">Inscription Entreprise</a>
                         </li>
-                    </th:block>
-                </ul>
+                    </ul>
+                </th:block>
 
-                <ul class="nav navbar-nav navbar-right pull-right">
-                    <th:block sec:authorize="isAuthenticated()">
+                <th:block sec:authorize="isAuthenticated()">
+                    <ul class="nav navbar-nav navbar-right pull-right">
+
+                        <li th:replace="fragments/headerFragments/notifications :: notifications">
+                            NOTIFICATIONS
+                        </li>
+
                         <li sec:authorize-url="/candidat/profile">
                             <a th:href="@{/candidat/profile}">Profile</a>
                         </li>
@@ -49,8 +54,9 @@
                         <li>
                             <a th:href="@{/logout}">Logout</a>
                         </li>
-                    </th:block>
-                </ul>
+                    </ul>
+                </th:block>
+
 
                 <div class="menu-item">
                     <!-- Mobile menu toggle-->

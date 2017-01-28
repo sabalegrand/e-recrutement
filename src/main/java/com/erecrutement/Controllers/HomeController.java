@@ -2,6 +2,7 @@ package com.erecrutement.Controllers;
 
 import com.erecrutement.Entities.Cv;
 import com.erecrutement.Entities.Image;
+import com.erecrutement.Repositories.CompetencesRepository;
 import com.erecrutement.Repositories.CvRepository;
 import com.erecrutement.Repositories.ImageRepository;
 import org.slf4j.Logger;
@@ -30,10 +31,8 @@ import java.util.List;
 public class HomeController {
 
 
-
     @RequestMapping({"/", "/index"})
     public String index(Principal principal) {
-
         return "index";
     }
 

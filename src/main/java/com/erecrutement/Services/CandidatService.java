@@ -1,9 +1,8 @@
 package com.erecrutement.Services;
 
-import com.erecrutement.Entities.Candidat;
+import com.erecrutement.Entities.User.Candidat;
 import com.erecrutement.Repositories.CandidatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**

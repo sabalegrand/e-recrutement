@@ -1,9 +1,7 @@
 package com.erecrutement.Repositories;
 
-import com.erecrutement.Entities.User;
+import com.erecrutement.Entities.User.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 /**
  * Created by saba on 06/12/16.

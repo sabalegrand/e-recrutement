@@ -1,7 +1,6 @@
 package com.erecrutement.Security;
 
-import com.erecrutement.Entities.Role;
-import com.erecrutement.Entities.User;
+import com.erecrutement.Entities.User.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;

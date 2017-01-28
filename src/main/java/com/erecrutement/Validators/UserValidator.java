@@ -1,6 +1,6 @@
 package com.erecrutement.Validators;
 
-import com.erecrutement.Entities.User;
+import com.erecrutement.Entities.User.User;
 import com.erecrutement.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

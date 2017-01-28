@@ -1,6 +1,6 @@
 package com.erecrutement.Entities.Offres;
 
-import com.erecrutement.Entities.Entreprise;
+import com.erecrutement.Entities.User.Entreprise;
 
 import javax.persistence.*;
 import java.util.ArrayList;

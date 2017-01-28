@@ -1,15 +1,19 @@
-/*.recherche {*/
-    /*position: fixed;*/
-/*}*/
-/*!**/
-/*TODO: gérér petit écran pour recherche*/
-/**!*/
-/*@media (max-width: 600px) {*/
-    /*.recherche {*/
-        /*position: relative;*/
-    /*}*/
-/*}*/
 
 .offre-date-published{
     display:inline-block;
 }
+
+.notification {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: 8px!important;
+}
+
+.notify-list {
+    height: 285px;
+    overflow: scroll;
+}
+

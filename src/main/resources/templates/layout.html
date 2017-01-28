@@ -75,7 +75,7 @@
         </div>
         <!-- END CONTENT -->
         <!-- Footer -->
-        <footer class="footer text-right">
+        <footer class="footer text-right" >
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 text-center">
@@ -105,6 +105,48 @@
 <!-- App js -->
 <script th:src="@{/js/jquery.core.js}"></script>
 <script th:src="@{/js/jquery.app.js}"></script>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    (function () {
+
+        const notificationsContainer = $("#notificationsContainer");
+        const notificationsNumber = $("#notificationsNumber");
+
+        let addNotification = function (notification) {
+
+             const notificationLi = $('<li></li>')
+            const notificationUrl = $('<a class="user-list-item"></a>');
+            notificationUrl.append('<div class="icon bg-info"><i class="mdi mdi-account"></i></div>');
+
+            const notificationsDetails = $('<div class="user-desc"></div>');
+            const notificationsDescription = $('<span class="name"></span>').html(notification.description);
+            const notificationReceivedAt = $('<span class="time"></span>').html("Reçu le: " + notification.receivedAt);
+
+            notificationsDetails.append(notificationsDescription)
+                                .append(notificationReceivedAt);
+            notificationUrl.append(notificationsDetails);
+
+            notificationLi.append(notificationUrl);
+
+            return notificationLi;
+        };
+
+        let isAuthenticated = [[${#httpServletRequest.remoteUser}]] ? true : false;
+        if(isAuthenticated) {
+            $.get("/notifications", function(data,status) {
+                notificationsNumber.append(data.length);
+                if(data.length !== 0) {
+                    notificationsContainer.append('Aucune notification');
+                }
+                data.forEach(function(val) {
+                   notificationsContainer.append(addNotification(val));
+                });
+            });
+        }
+    })();
+    /*]]>*/
+</script>
 
 <th:block layout:fragment="script">
 

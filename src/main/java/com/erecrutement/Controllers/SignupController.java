@@ -1,7 +1,7 @@
 package com.erecrutement.Controllers;
 
-import com.erecrutement.Entities.Candidat;
-import com.erecrutement.Entities.Entreprise;
+import com.erecrutement.Entities.User.Candidat;
+import com.erecrutement.Entities.User.Entreprise;
 import com.erecrutement.Entities.Role;
 import com.erecrutement.Repositories.UserRepository;
 import com.erecrutement.Validators.UserValidator;

@@ -1,6 +1,6 @@
 package com.erecrutement.Services;
 
-import com.erecrutement.Entities.User;
+import com.erecrutement.Entities.User.User;
 
 /**
  * Created by saba on 10/12/16.

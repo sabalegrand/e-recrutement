@@ -1,15 +1,13 @@
 package com.erecrutement.Controllers;
 
 import com.erecrutement.Entities.*;
+import com.erecrutement.Entities.User.Candidat;
 import com.erecrutement.Repositories.CvRepository;
 import com.erecrutement.Repositories.ExperienceRepository;
 import com.erecrutement.Repositories.ImageRepository;
 import com.erecrutement.Services.CandidatService;
 import com.erecrutement.ViewModels.ExperienceForm;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,6 @@
 package com.erecrutement.Entities.Offres;
 
-import com.erecrutement.Entities.Candidat;
-import org.hibernate.annotations.GeneratorType;
+import com.erecrutement.Entities.User.Candidat;
 
 import javax.persistence.*;
 import java.util.Date;

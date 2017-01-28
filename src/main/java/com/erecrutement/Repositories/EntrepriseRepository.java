@@ -1,6 +1,6 @@
 package com.erecrutement.Repositories;
 
-import com.erecrutement.Entities.Entreprise;
+import com.erecrutement.Entities.User.Entreprise;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

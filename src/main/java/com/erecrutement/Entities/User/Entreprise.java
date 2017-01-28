@@ -1,6 +1,7 @@
-package com.erecrutement.Entities;
+package com.erecrutement.Entities.User;
 
 import com.erecrutement.Entities.Offres.Offre;
+import com.erecrutement.Entities.User.User;
 
 import javax.persistence.*;
 import java.util.ArrayList;

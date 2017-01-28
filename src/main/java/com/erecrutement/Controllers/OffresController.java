@@ -1,6 +1,6 @@
 package com.erecrutement.Controllers;
 
-import com.erecrutement.Entities.Candidat;
+import com.erecrutement.Entities.User.Candidat;
 import com.erecrutement.Entities.Offres.Offre;
 import com.erecrutement.Entities.Offres.OffreCandidat;
 import com.erecrutement.Helpers.OffreHelper;
@@ -9,17 +9,14 @@ import com.erecrutement.Services.OffreService;
 import com.erecrutement.ViewModels.OffreViewModel;
 import com.erecrutement.ViewModels.OffresViewModel;
 import com.erecrutement.ViewModels.RechercheViewModel;
-import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import java.security.Principal;
 import java.util.*;
 

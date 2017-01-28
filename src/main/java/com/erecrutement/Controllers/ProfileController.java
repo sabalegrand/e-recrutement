@@ -1,6 +1,6 @@
 package com.erecrutement.Controllers;
 
-import com.erecrutement.Entities.Candidat;
+import com.erecrutement.Entities.User.Candidat;
 import com.erecrutement.Entities.Cv;
 import com.erecrutement.Entities.LocalCv;
 import com.erecrutement.Services.CandidatService;

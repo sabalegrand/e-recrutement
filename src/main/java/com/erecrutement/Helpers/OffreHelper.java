@@ -1,6 +1,6 @@
 package com.erecrutement.Helpers;
 
-import com.erecrutement.Entities.Candidat;
+import com.erecrutement.Entities.User.Candidat;
 import com.erecrutement.Entities.Offres.*;
 
 /**

@@ -1,5 +1,8 @@
-package com.erecrutement.Entities;
+package com.erecrutement.Entities.User;
 
+
+import com.erecrutement.Entities.Image;
+import com.erecrutement.Entities.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -46,8 +49,12 @@ public abstract class User {
     @JoinTable(name = "USERS_ROLES")
     private Collection<Role> roles;
 
+    @OneToMany
+    private Collection<Notification> notifications;
+
     public User() {
         this.roles = new ArrayList<>();
+        this.notifications = new ArrayList<>();
     }
 
     public User(User u) {
@@ -156,5 +163,13 @@ public abstract class User {
 
     public void setAvatar(Image avatar) {
         this.avatar = avatar;
+    }
+
+    public Collection<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(Collection<Notification> notifications) {
+        this.notifications = notifications;
     }
 }
